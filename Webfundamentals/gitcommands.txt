@@ -1,0 +1,12 @@
+Rubens-MacBook-Pro:~ duran$ cd Desktop/
+Rubens-MacBook-Pro:~ duran$ mkdir gittest
+Rubens-MacBook-Pro:~ duran$ git init
+Rubens-MacBook-Pro:~ duran$ touch index.html styles.css aboutMe.txt
+Rubens-MacBook-Pro:~ duran$ git add .
+Rubens-MacBook-Pro:~ duran$ git commit -m "initial commit"
+Rubens-MacBook-Pro:~ duran$ git add .
+Rubens-MacBook-Pro:~ duran$ git commit -m "added fav movie"
+Rubens-MacBook-Pro:~ duran$ git log
+git revert -n d523f53047b58ef1d41932b7820fc87eb519753f
+Rubens-MacBook-Pro:gittest duran$ git add .
+Rubens-MacBook-Pro:gittest duran$ git commit -m "added favorite book"

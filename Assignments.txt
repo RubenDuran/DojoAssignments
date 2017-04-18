@@ -1,0 +1,31 @@
+Rubens-MacBook-Pro:DojoAssignments duran$ ls -R
+MEAN            Python          Ruby            Webfundamentals iOS             netCore
+
+./MEAN:
+about.txt
+
+./Python:
+about.txt
+
+./Ruby:
+about.txt
+
+./Webfundamentals:
+CSS             Git             HTML            Javascript      about.txt
+
+./Webfundamentals/CSS:
+about.txt
+
+./Webfundamentals/Git:
+about.txt
+
+./Webfundamentals/HTML:
+about.txt               indentation.html
+
+./Webfundamentals/Javascript:
+about.txt
+
+./iOS:
+
+./netCore:
+about.txt
