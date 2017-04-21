@@ -1,0 +1,159 @@
+.wrapper {
+    max-width: 970px;
+    padding-left: 10px;
+}
+
+.header img {
+    max-width: 10%;
+    display: inline-block;
+    margin-bottom: 0;
+    position: absolute;
+    top: 10px;
+    width: 100px;
+}
+
+h1 {
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 2.7em;
+    margin-left: 100px;
+    margin-bottom: 2px;
+}
+
+h2 {
+    background-color: #5D82A9;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    font-size: 1.75em;
+    font-family: sans-serif;
+}
+
+h3 {
+    color: #5D82A9;
+}
+
+h5 {
+    display: inline-block;
+    color: #5D82A9;
+}
+.main {
+    background-color: #E5E5E5;
+    background-image: linear-gradient( to bottom, #E5E5E5, white 10%);
+}
+
+.left {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.right {
+    display: inline-block;
+    text-align: right;
+    min-width: 550px;
+    vertical-align: top;
+}
+
+.right p {
+    font-size: 0.5em;
+    margin: 0;
+}
+
+.right h3 {
+    margin: 0;
+    color: #5FC3DB;
+}
+
+.sidebar {
+    display: inline-block;
+    max-width: 20%;
+    font-weight: bold;
+}
+
+.sidebar p {
+    font-size: .8em;
+}
+
+.ad {
+    max-width: 100%;
+    background-image: url(images/ad_background.png);
+    color: white;
+    text-align: center;
+    vertical-align: top;
+    margin-right: 20px;
+    font-size: 1.5em;
+}
+
+.ad img {
+    max-width: 100%;
+}
+
+.content {
+    display: inline-block;
+    max-width: 65%;
+    padding-left: 20px;
+    vertical-align: top;
+}
+
+.content img {
+    width: 300px;
+    height: 200px;
+    padding-left: 200px;
+}
+
+.bottom {
+    border-top: 3px solid #3483D9;
+    border-left: 3px solid #3483D9;
+    border-right: 3px solid #3483D9;
+}
+
+.bottom img {
+    display: inline-block;
+    max-width: 20%;
+    padding: 10px;
+}
+
+.bottom-content {
+    display: inline-block;
+    max-width: 70%;
+    vertical-align: top;
+}
+
+span {
+    color: #4B9DB2;
+}
+#icon {
+    padding-left: 0;
+    width: 20px;
+    height: 20px;
+}
+
+#red {
+    color: red;
+}
+
+#blue {
+    background-color: #5D82A9;
+    min-width: 100%;
+}
+
+#orange {
+    background-color: #E08D34;
+    min-width: 100%;
+}
+
+#skyblue {
+    background-color: #5FC3DB;
+}
+
+#nomarg {
+    margin-top: 1px;
+    border-top: 1px solid grey;
+}
+
+button {
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 2px;
+}
