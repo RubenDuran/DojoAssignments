@@ -1,0 +1,45 @@
+h1 {
+    text-align: center;
+}
+
+p {
+    display: inline-block;
+}
+
+button {
+    margin-left: 40%;
+    padding: 10px;
+}
+
+.red {
+    color: red;
+}
+
+img {
+    display: none;
+}
+
+#showP {
+    display: none;
+}
+
+#downerP {
+    display: none;
+}
+
+#faderP {
+    display: none;
+}
+
+#attrP {
+    display: block;
+    margin-left: 30%;
+}
+
+input {
+    margin-left: 30%;
+}
+
+#textTest {
+    margin: 0;
+}
