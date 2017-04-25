@@ -1,0 +1,41 @@
+.wrapper{
+    background-color: #DDDFD4;
+    max-width: 970px;
+}
+.header{
+    background-color: #5DAEAC;
+    font-family: sans-serif;
+}
+.main-container{
+    background-color: #F8E79C;
+}
+.forest{
+    background-color: #213F43;
+}
+li{
+    list-style: none;
+    text-decoration: underline;
+    color: white;
+    display: inline-block;
+    padding: 10px;
+}
+.head-left{
+    display: inline-block;
+}
+.head-right{
+    display: inline-block;
+}
+img{
+    display: inline-block;
+    max-width: 10%;
+}
+h1{
+    display: inline-block;
+}
+body{
+    background-color: #DDDFD4;
+    max-width: 970px;
+}
+#footer{
+    background-color: #5DAEAC;
+}

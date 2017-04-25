@@ -1,0 +1,11 @@
+Rubens-MacBook-Pro:~ duran$ cd Desktop/DojoAssignments/
+Rubens-MacBook-Pro:DojoAssignments duran$ git init
+Rubens-MacBook-Pro:DojoAssignments duran$ git remote add ori
+gin https://github.com/RubenDuran/DojoAssignments.git
+Rubens-MacBook-Pro:DojoAssignments duran$ git push -u origin master
+Rubens-MacBook-Pro:DojoAssignments duran$ touch readme.md
+Rubens-MacBook-Pro:DojoAssignments duran$ git status
+Rubens-MacBook-Pro:DojoAssignments duran$ git add readme.md
+Rubens-MacBook-Pro:DojoAssignments duran$ git commit -m "add
+ed readme"
+Rubens-MacBook-Pro:DojoAssignments duran$ git push
