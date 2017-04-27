@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery 2 lecture</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <style type="text/css">
+  	.blue-to-red{
+  		background-color: blue;
+  	}
+  </style>
+  <script type="text/javascript">
+  	console.log($);
+  	$(document).ready(function(){
+  		$('.blue-to-red').click(function(){
+  			$(this).css('background-color', 'red');
+  		})
+  		$('#button-creator').click(function(){
+  			$("#container").append("<button class='blue-to-red'>Click me to change my color to red</button>");
+  		})
+  		$(document).on('click', '.blue-to-red', function(){
+  			$(this).css('background-color', 'red');
+  		})
+  		$('#simple-form').submit(function(){
+  			console.log("Hello");
+  			var fullName = $('#full_name_input').val();
+  			$('#full_name_input').val('');
+  			console.log(fullName);
+  			if(fullName.length>0){
+	  			var htmlString = "<li>"+fullName+"</li>";
+	  			$('#validation_errors').html("");
+  			}else{
+  				$('#validation_errors').html("Enter in a name, dummy");
+  			}
+  			$('#people-list').append(htmlString);
+  			return false;
+  		})
+  	})
+  </script>
+</head>
+<body>
+	<form id="simple-form">
+		<input type="text" name="full_name" placeholder="enter name" id='full_name_input'>
+		<input type="submit" value="add this person to the list.">
+	</form>
+	<div id="validation_errors">
+
+	</div>
+	<ul id="people-list">
+		<li>Kobe Bryant</li>
+	</ul>
+	<div id="container">
+		<button id='button-creator'>Click me to make more buttons like this guy</button>
+		<button class='blue-to-red'>Click me to change my color to red</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+img{
+    display: inline-block;
+    min-width: 20%;
+    margin-left: 20px;
+}
+button{
+    margin-left: 20px;
+    background-color: green;
+    color: white;
+}

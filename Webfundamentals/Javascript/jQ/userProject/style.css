@@ -1,0 +1,17 @@
+table{
+    border: 1px solid black;
+}
+th{
+    padding: 5px 20px 5px 5px;
+}
+input{
+    display: block;
+}
+form{
+    border-top: 1px solid black;
+    min-width: 50%;
+}
+h1{
+    margin-top: 20px;
+    margin-bottom: 0;
+}

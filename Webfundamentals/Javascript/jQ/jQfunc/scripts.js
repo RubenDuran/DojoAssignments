@@ -5,6 +5,7 @@ $(document).ready(function() {
         $('p.colorLess').addClass('red');
     });
 
+
     // toggle image on btn click
     $('#imageTog').click(function() {
         $('img').slideToggle('slow');
