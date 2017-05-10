@@ -22,6 +22,7 @@ class Product(object):
         self.cost = cost
         self.status = "for sale"
 
+
     def sell(self):
         self.status = "sold"
         return self.status
@@ -29,7 +30,6 @@ class Product(object):
     def add_tax(self,tax):
         self.price = format(float(self.price)* (1.0 - tax),'.2f')
         return self.price
-        # format(1.2345, '.2f')
 
     def product_return(self,reason,box="closed"):
         if reason == "defective":
@@ -51,7 +51,7 @@ class Product(object):
             return self
 
 prod1 = Product("79.99","Cortez","3.5oz","Nike","39.99")
-prod1.display_prod_info()
+# prod1.display_prod_info()
 
 # output
 # Price: 79.99
@@ -62,7 +62,7 @@ prod1.display_prod_info()
 # Status: for sale
 
 prod1.add_tax(0.14)
-prod1.display_prod_info()
+# prod1.display_prod_info()
 
 # output:
 # Price: 68.79
@@ -73,7 +73,7 @@ prod1.display_prod_info()
 # Status: for sale
 
 prod1.product_return("defective")
-prod1.display_prod_info()
+# prod1.display_prod_info()
 
 # output
 # Price: 0
@@ -84,9 +84,9 @@ prod1.display_prod_info()
 # Status: defective
 
 prod2 = Product("99.99","Air Force 1s","4.0oz","Nike","44.99")
-prod2.display_prod_info()
+# prod2.display_prod_info()
 prod2.product_return("like new", "open")
-prod2.display_prod_info()
+# prod2.display_prod_info()
 
 # Price: 99.99
 # Name: Air Force 1s
