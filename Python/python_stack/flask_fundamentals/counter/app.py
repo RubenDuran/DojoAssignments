@@ -13,6 +13,7 @@ def sessionCounter():
         session['counter'] = 1
 
     return session['counter']
+    
 def sessionPlusTwo():
     session['counter'] +=1
     return session['counter']
