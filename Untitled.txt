@@ -1,0 +1,201 @@
+
+Coding dojo 
+Main inst Lance
+
+
+Andy ios
+Natty python
+Nate rails
+Eduardo curriculum
+Kevin web fundamentals
+Calvin
+
+Joan saunders career advisor 
+
+----------------------------------
+
+Amir no  sarah
+
+Scott phillip
+
+------------------------
+
+Inline elements: <a>, <img>, <span>, <input>, <label>, <select>, <textarea>
+Inline items only take up as much space as needed.
+
+Block elements: <body>, <div>, <form>, <h1>-<h6>, <p>, <table>, <ul>, <ol>, <li>
+Block items take up the 100% of the width of the parent element. Even if the width of the element is less than the parent, the element will still take up 100% of the width of the parent
+
+
+Inline elements
+      <a href="#">One</a>
+      <a href="#">Two</a>
+      <a href="#">Three</a>
+      <a href="#">Four</a>
+      <a href="#">Five</a>
+    
+      a {
+        margin: 10px;
+        background: #eee;
+        color: black;
+        padding: 10px;
+      }
+
+Converting into block items. - display: block;
+
+ <a href="#">One</a>
+      <a href="#">Two</a>
+      <a href="#">Three</a>
+      <a href="#">Four</a>
+      <a href="#">Five</a>
+    
+      a {
+        margin: 10px;
+        background: #eee;
+        color: black;
+        display: block;
+        padding: 10px;
+      }
+
+
+#nav-menu{
+  list-style-type: none; /*This gets rid of the bullets.*/
+}
+
+
+
+Tested to see if adding a string to a number would work as adding a number to a string and it did. Either order you concatenate a number and a string it converts it to a string. 
+var str = "hello";
+
+str + 5
+"hello5"
+
+5 + str
+"5hello"
+
+
+
+<div class="head-img">
+                    <img src="images/github.jpg" alt="">
+                </div>
+
+div class="head-img">
+                    <img src="images/catandninja.png" alt="">
+                </div>
+
+
+
+
+
+
+-------jquery ---]
+ $(document).ready(function(){
+ });
+
+ $('button').click(function(){
+    alert("You have clicked a button!");
+ });
+
+
+
+$(document).on('click', 'alert', function(){
+alert('you cliked me');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+-----<script>
+  $(document).ready(function(){
+   $('button').click(function(){
+    $('div').append('<h3>I am a new content</h3>');
+   });
+   $('div.a').on('mouseover', 'h3', function(){ 
+    $(this).css('color', 'pink');
+   });
+  });
+</script>
+<body>
+  <button>Click me</button>
+  <div class="a">
+   <h3>I am old content</h3>
+  </div>
+  <div class="b">
+   <h3>I am old content</h3>
+  </div>
+</body>
+
+
+
+=========
+$('form').submit(function(){alert('you submitted me!');});
+~~~~~
+ $('h4').click(function(){
+     $('form').submit();
+ })
+
+============
+
+$(document).on("click", ".btn")
+
+
+
+
+$(document).on("click", ".btn", function() {
+        var Name = $('#fName').val() + " " + $('#lName').val();
+        var description = $('textarea').val();
+        var newUser = '<div class="card"><h1 class="on"> ' + Name + ' </h1><h4 class="on">Click for description!</h4><p class="off"> ' + description + ' </p></div>';
+
+        $('.card1').before(newUser);
+        return false;
+    });
+
+
+-----
+$('button').click(function() {
+        var Name = $('#fName').val() + " " + $('#lName').val();
+        var description = $('textarea').val();
+        var newUser = '<div class="card"><h1 class="on"> ' + Name + ' </h1><h4 class="on">Click for description!</h4><p class="off"> ' + description + ' </p></div>';
+
+        $('.card1').before(newUser);
+        return false;
+    });
+ ==============
+
+$.get("http://pokeapi.co/api/v1/pokemon/1/", function(res) {
+    for(var i = 0; i < res.types.length; i++) {
+        console.log(res.types[i].name);
+    }
+}, "json");
+
+
+
+
+
+
+-----------------programming notes -----------
+Interpreted languages like PHP, Python, and Ruby translate from source code into machine code “on the fly”, immediately before a computer needs it. Compiled languages do some or all of this translation ahead of time. 
+
+A callback is nothing more than a function that we tell some other function to run at some specific later time. In order to attach event handlers to dynamic HTML content, I need to run my jQuery code for the dynamic content after the content is created. In other words, I must wait until that dynamic content is created before I can attach any event listener to it. 
+
+Problem solving means the ability to formulate problems, think creatively about solutions, and express a solution clearly and accurately. 
+
+what's the difference between a parameter and an argument? 
+We define parameters. We pass in arguments into functions.
+
+Objects can store two different types of information: attributes and methods. Attributes are characteristics of an object, while methods are things an object can do.
+
+ __init__ method. The init method is called every time a new object is created. 
+
+
+
+
+
