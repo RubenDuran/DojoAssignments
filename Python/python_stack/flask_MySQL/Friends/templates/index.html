@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Friends</title>
+        <style media="screen">
+            .container{
+                margin: 20px 100px;
+            }
+            table{
+                border: 1px solid black;
+            }
+            th{
+                border-right: 1px solid black;
+                border-bottom: 1px solid black;
+            }
+            td{
+                border-right: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Friends:</h1>
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Friend Since</th>
+                    <th></th>
+                </thead>
+                {% for friend in friends %}
+
+                <tbody>
+                    <td>{{friend['name']}}</td>
+                    <td>{{friend['age']}}</td>
+                    <td>{{friend['fs']}}</td>
+                    <td>{{friend['y']}}</td>
+                </tbody>
+                {% endfor %}
+            </table>
+            <h1>Add a Friend:</h1>
+            <form action="/friends" method="POST">
+                Name: <input type="text" name="name" id="name">
+                Age: <input type="text" name="age" id="age">
+                <input type="submit" value="Submit">
+
+            </form>
+
+        </div>
+    </body>
+</html>
