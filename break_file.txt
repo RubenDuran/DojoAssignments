@@ -1,0 +1,27 @@
+ValueError: invalid literal for int() with base 10: ''
+
+fix: added a port number to fix
+
+
+sqlalchemy.exc.OperationalError
+OperationalError: (_mysql_exceptions.OperationalError) (2003, "Can't connect to MySQL server on '127.0.0.1' (61)")
+
+fix: changed port to fix
+
+
+sqlalchemy.exc.OperationalError
+OperationalError: (_mysql_exceptions.OperationalError) (1049, "Unknown database 'frien'")
+
+fix: fixed db name
+
+
+sqlalchemy.exc.OperationalError
+OperationalError: (_mysql_exceptions.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+fix: changed password
+
+sqlalchemy.exc.OperationalError
+OperationalError: (_mysql_exceptions.OperationalError) (1045, "Access denied for user 'roots'@'localhost' (using password: YES)")
+
+
+fix: changed user
