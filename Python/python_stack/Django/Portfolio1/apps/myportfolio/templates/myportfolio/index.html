@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Portfolio</title>
+        {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'myportfolio/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+    </head>
+    <body>
+        <h1>Hi, I'm Ruben</h1>
+        <h2>Welcome to My Portfolio</h2>
+
+        <div class="container">
+            <div class="block">
+                <h3><a href="{% url 'projects' %}">Projects</a></h3>
+                <p>I have a variety of projects both personal and contract. They are built using Python, Swift, and JavaScript.</p>
+            </div>
+            <div class="block">
+                <h3><a href="{% url 'about' %}">About Me</a></h3>
+                <p>A little about my background and why I do what I do.</p>
+            </div>
+            <div class="block">
+                <h3><a href="{% url 'testimonials' %}">Testimonials</a></h3>
+                <p>What my clients and mentors have too say about my projects and work ethic.</p>
+            </div>
+
+        </div>
+
+
+    </body>
+</html>

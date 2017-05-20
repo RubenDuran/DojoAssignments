@@ -1,0 +1,14 @@
+body{
+    text-align: center;
+    
+}
+.block{
+    display: inline-block;
+    max-width: 30%;
+    vertical-align: top;
+    padding: 10px;
+}
+p{
+    border: 1px solid black;
+    min-height: 100px;
+}
