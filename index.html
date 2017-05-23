@@ -1,0 +1,545 @@
+<p>| Django Intro </p>
+<script src="/assets/chapter_modules_scripts-be8b5175b40b217d9c8172839f9b6f3d.js"></script>
+<script src="/assets/modules_scripts-af69eeb0722c216934f6d474a3de13e9.js"></script>
+<script>
+	// <![CDATA[
+	var AUTH_TOKEN = 'RXAv3QGVA1GpHgoYTsKSqM2i22b7zbroVHixvW+497Q=';
+	// ]]>
+</script>
+<script src="https://learn.codingdojo.com:8787/socket.io/socket.io.js" type="text/javascript"></script>
+<p><input id="activate_menu_checkbox" class="hidden" checked="checked" type="checkbox" /></p>
+<div id="menu_button"><label class="glyphicon glyphicon-menu-hamburger" for="activate_menu_checkbox"></label>
+	<div class="track_button">Back to Tracks</div>
+	<!-- <label label for="activate_menu_checkbox" class="glyphicon menu_indicator"></label> --></div>
+<div class="hidden_chapter_title hidden">&nbsp;</div>
+
+<section id="main_content">
+	<div id="content_navigation">
+		<div id="return_button" class="right_align"><a class="unload_link" href="/dashboard"> Home </a> <input name="authenticity_token" type="hidden" value="RXAv3QGVA1GpHgoYTsKSqM2i22b7zbroVHixvW+497Q=" /></div>
+	</div>
+	<div>
+		<div>
+			<div id="assignment-metadata">&nbsp;</div>
+			<div class="content_block">
+				<div>
+					<div class="module_content module_content_block">
+						<div class="module_description active_lesson active_lesson_with_video ">
+							<h2>Django Project Cheat Sheet</h2>
+							<p>Here is a crib sheet of the process of creating a Django application from scratch. This is a summary sheet of the commands you've learned up to this point. It's a good idea to be very familiar with this process, and this sheet is useful for a quick
+								reference once you've gotten a good grasp of the concepts they describe.</p>
+							<h2>Install</h2>
+							<h3>Mac:</h3>
+							<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash"><span class="token operator">&gt;</span> virtualenv djangoEnv
+<span class="token operator">&gt;</span> <span class="token function">source</span> djangoEnv/bin/activate
+<span class="token punctuation">(</span>djangoEnv<span class="token punctuation">)</span><span class="token operator">&gt;</span>pip <span class="token function">install</span> django
+</code></pre>
+							<div class="toolbar">
+								<div class="toolbar-item"><a>Copy</a></div>
+							</div>
+							<h3>PC:</h3>
+							<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash"><span class="token operator">&gt;</span> python -m virtualenv djangoEnv
+<span class="token operator">&gt;</span> call djangoEnv/scripts/activate
+<span class="token punctuation">(</span>djangoEnv<span class="token punctuation">)</span><span class="token operator">&gt;</span>pip <span class="token function">install</span> django
+</code></pre>
+							<div class="toolbar">
+								<div class="toolbar-item"><a>Copy</a></div>
+							</div>
+							<h2>Activate virtualenv</h2>
+							<h3>Mac:</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<li>
+		<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash"><span class="token function">source</span> djangoEnv/bin/activate
+</code></pre>
+		<div class="toolbar">
+			<div class="toolbar-item"><a>Copy</a></div>
+		</div>
+	</li>
+	<div>
+		<div>
+			<div class="content_block">
+				<div>
+					<div class="module_content module_content_block">
+						<div class="module_description active_lesson active_lesson_with_video ">
+							<h3>PC:</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<li>
+		<pre>call djangoEnv/scripts/activate
+</pre>
+	</li>
+	<div id="section_content">
+		<div class="content_block">
+			<div id="module_container">
+				<div class="module_content module_content_block">
+					<div class="module_description active_lesson active_lesson_with_video ">
+						<h2>Create project</h2>
+						<pre class=" code-toolbar  language-python" data-language="python"><code class="  language-python"><span class="token comment" spellcheck="true"># 'main' is the project name used below</span>
+django<span class="token operator">-</span>admin startproject main
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h3>The project has been created, inspect the file &amp; folders created as a result:</h3>
+						<ul class="new">
+							<li>Folder: main</li>
+							<ul>
+								<li class="new">File: manage.py &lt;= used to run the application.</li>
+								<li>Folder: main &lt;= contains the files specific to our app.</li>
+								<ul>
+									<li>File: __init__.py</li>
+									<li>File: settings.py</li>
+									<li>File: urls.py</li>
+									<li>File: wsgi.py</li>
+								</ul>
+							</ul>
+						</ul>
+						<h3>A few more config items to complete the setup:</h3>
+						<ul>
+							<ul>
+								<li>Navigate into the main directory that you just created.</li>
+							</ul>
+						</ul>
+						<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash"><span class="token operator">&gt;</span> <span class="token function">cd</span> main
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<ul>
+							<ul>
+								<li>Make a new apps directory</li>
+							</ul>
+						</ul>
+						<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash"><span class="token operator">&gt;</span> <span class="token function">mkdir</span> apps
+	</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<ul>
+							<ul>
+								<li>Navigate into apps</li>
+							</ul>
+						</ul>
+						<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash"><span class="token operator">&gt;</span> <span class="token function">cd</span> apps
+	</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<ul>
+							<ul>
+								<li>Create an __init__.py file. This just let's Python know that this folder is viewable by Python so that # other Python modules can look in here and access the code!</li>
+							</ul>
+						</ul>
+						<h4>Bash: (Mac, Linux, PCs with GitBash) =&gt;</h4>
+						<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash"><span class="token function">touch</span> __init__.py
+	</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h4>PCs: (Command Prompt) =&gt;</h4>
+						<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash">nul<span class="token operator">&gt;</span> __init__.py
+	</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h3>Start the new app.</h3>
+						<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash"><span class="token operator">&gt;</span> python <span class="token punctuation">..</span>/manage.py startapp first_app
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h3>The app 'first_app' has been created, lets look at the updated file/folder structure:</h3>
+						<ul>
+							<li>Folder: main</li>
+							<ul>
+								<li class="new">Folder: apps &lt;= created by our steps above</li>
+								<ul class="new">
+									<li>File: __init__.py &lt;= created by our steps above</li>
+									<li>Folder: first_app &lt;= created as a result to the call to 'startapp'</li>
+									<ul>
+										<li>File: __init__.py</li>
+										<li>File: admin.py</li>
+										<li>File: apps.py</li>
+										<li>File: models.py &lt;= The 'M' in MVC</li>
+										<li>File: tests.py</li>
+										<li>File: views.py &lt;= The CONTROLLER in our MVC pattern</li>
+									</ul>
+								</ul>
+								<li>File: manage.py &lt;= used to run the application.</li>
+								<li>Folder: main &lt;= contains the files specific to our app.</li>
+								<ul>
+									<li>File: __init__.py</li>
+									<li>File: settings.py</li>
+									<li>File: urls.py</li>
+									<li>File: wsgi.py</li>
+								</ul>
+							</ul>
+						</ul>
+						<p>Open the settings.py file an add a line to your INSTALLED_APPS:</p>
+						<pre class=" code-toolbar  language-python" data-language="python"><code class="  language-python">INSTALLED_APPS <span class="token operator">=</span> <span class="token punctuation">[</span>
+	<span class="token string">'apps.first_app'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">### &lt;= added this line!</span>
+	<span class="token string">'django.contrib.admin'</span><span class="token punctuation">,</span>
+	<span class="token string">'django.contrib.auth'</span><span class="token punctuation">,</span>
+	<span class="token string">'django.contrib.contenttypes'</span><span class="token punctuation">,</span>
+	<span class="token string">'django.contrib.sessions'</span><span class="token punctuation">,</span>
+	<span class="token string">'django.contrib.messages'</span><span class="token punctuation">,</span>
+	<span class="token string">'django.contrib.staticfiles'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<p>Open the urls.py file, add the line to import include and add a line to include all of the url routes from our app into the main app's url routes.</p>
+						<pre class=" code-toolbar  language-python" data-language="python"><code class="  language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> url<span class="token punctuation">,</span> include <span class="token comment" spellcheck="true"># Notice we added include</span>
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+	url<span class="token punctuation">(</span>r<span class="token string">'^'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span><span class="token string">'apps.first_app.urls'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># And now we use include to pull in our first_app.urls...</span>
+<span class="token punctuation">]</span>
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<p>Now, create the urls.py file in our 'first_app' folder so that the final file/folder structure looks like this:</p>
+						<ul>
+							<li>Folder: main</li>
+							<ul>
+								<li>Folder: apps &lt;= created by our steps above</li>
+								<ul>
+									<li>File: __init__.py &lt;= created by our steps above</li>
+									<li>Folder: first_app &lt;= created as a result to the call to 'startapp'</li>
+									<ul>
+										<li>File: __init__.py</li>
+										<li>File: admin.py</li>
+										<li>File: apps.py</li>
+										<li>File: models.py &lt;= The 'M' in MVC</li>
+										<li>File: tests.py</li>
+										<li>File: views.py &lt;= The CONTROLLER in our MVC pattern</li>
+										<li class="new">urls.py &lt;= the file that will handle the routes of our app</li>
+									</ul>
+								</ul>
+								<li>File: manage.py &lt;= used to run the application.</li>
+								<li>Folder: main &lt;= contains the files specific to our app.</li>
+								<ul>
+									<li>File: __init__.py</li>
+									<li>File: settings.py</li>
+									<li>File: urls.py</li>
+									<li>File: wsgi.py</li>
+								</ul>
+							</ul>
+						</ul>
+						<h3>Add some routes to our urls.py file!</h3>
+						<pre class=" code-toolbar  language-python" data-language="python"><code class="  language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> url
+<span class="token keyword">from</span> <span class="token punctuation">.</span> <span class="token keyword">import</span> views           <span class="token comment" spellcheck="true"># So we can call functions from our routes!</span>
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+	url<span class="token punctuation">(</span>r<span class="token string">'^$'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>index<span class="token punctuation">)</span>       <span class="token comment" spellcheck="true"># 'home' route.</span>
+<span class="token punctuation">]</span>
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h3>Finally, run the app:</h3>
+						<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash">python manage.py runserver
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h3>Adding views &amp; static files</h3>
+						<ul>
+							<li>Folder: main</li>
+							<ul>
+								<li>Folder: apps &lt;= created by our steps above</li>
+								<ul>
+									<li>File: __init__.py &lt;= created by our steps above</li>
+									<li>Folder: first_app &lt;= created as a result to the call to 'startapp'</li>
+									<ul>
+										<li class="new">Folder: templates</li>
+										<ul class="new">
+											<li>Folder: first_app</li>
+											<ul>
+												<li>Files: *.html</li>
+											</ul>
+										</ul>
+										<li class="new">Folder: static</li>
+										<ul class="new">
+											<li>Folder: first_app</li>
+											<ul>
+												<li>Folder: css</li>
+												<li>Folder: js</li>
+												<li>Folder: images</li>
+											</ul>
+										</ul>
+										<li>File: __init__.py</li>
+										<li>File: admin.py</li>
+										<li>File: apps.py</li>
+										<li>File: models.py &lt;= The 'M' in MVC</li>
+										<li>File: tests.py</li>
+										<li>File: views.py &lt;= The CONTROLLER in our MVC pattern</li>
+										<li>urls.py &lt;= the file that will handle the routes of our app</li>
+									</ul>
+								</ul>
+								<li>File: manage.py &lt;= used to run the application.</li>
+								<li>Folder: main &lt;= contains the files specific to our app.</li>
+								<ul>
+									<li>File: __init__.py</li>
+									<li>File: settings.py</li>
+									<li>File: urls.py</li>
+									<li>File: wsgi.py</li>
+								</ul>
+							</ul>
+						</ul>
+						<h3>Example of a Controller action ('View' in Django:)</h3>
+						<pre class=" code-toolbar  language-python" data-language="python"><code class="  language-python"><span class="token comment" spellcheck="true"># views.py</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">"first_app/index.html"</span><span class="token punctuation">)</span>
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h3>Implement sessions in our app:</h3>
+						<pre class=" code-toolbar  language-bash" data-language="bash"><code class="  language-bash"><span class="token comment" spellcheck="true"># Need to be in same directory as manage.py file</span>
+<span class="token operator">&gt;</span> python manage.py makemigrations
+<span class="token operator">&gt;</span> python manage.py migrate
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h3>Context</h3>
+						<h4>On the server:</h4>
+						<pre class=" code-toolbar  language-python" data-language="python"><code class="  language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> render<span class="token punctuation">,</span> HttpResponse<span class="token punctuation">,</span> redirect
+<span class="token keyword">def</span> <span class="token function">show_ninja</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> ninja<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token comment" spellcheck="true">#ninja got passed in through the url parameter!</span>
+	context <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'myninja'</span> <span class="token punctuation">:</span> ninja<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">'/myproject/showmyninja.html'</span><span class="token punctuation">,</span> context<span class="token punctuation">)</span>
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h4>In our templates:</h4>
+						<pre class=" code-toolbar  language-html" data-language="html"><code class="  language-html"><span class="token comment" spellcheck="true">&lt;!-- From inside /myproject/showmyninja.html --&gt;</span>
+{{myninja}}
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h3>Route Parameters</h3>
+						<h4>In our urls.py file:</h4>
+						<pre class=" code-toolbar  language-python" data-language="python"><code class="  language-python"><span class="token comment" spellcheck="true"># Inside apps/appname/urls.py might look like this:</span>
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> url
+<span class="token keyword">from</span> <span class="token punctuation">.</span> <span class="token keyword">import</span> views
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+	url<span class="token punctuation">(</span>r<span class="token string">'^/en/(?P&lt;djangoversion&gt;[0-9]\.[0-9])/topics/http/urls/$'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>index<span class="token punctuation">)</span>
+<span class="token punctuation">]</span>
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+						<h4>In our views.py file:</h4>
+						<pre class=" code-toolbar  language-python" data-language="python"><code class="  language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> render<span class="token punctuation">,</span> HttpResponse<span class="token punctuation">,</span> redirect
+<span class="token comment" spellcheck="true"># Create your views here.</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> djangoversion<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span>djangoversion<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># will result in a string e.g. "1.9"</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello, I am your first request"</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">)</span>
+</code></pre>
+						<div class="toolbar">
+							<div class="toolbar-item"><a>Copy</a></div>
+						</div>
+					</div>
+					<!-- Modal Inactivity Notice Modal -->
+					<div id="inactivity_notice_modal" class="modal fade info_modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal_header">
+									<h4>Inactivity Notice</h4>
+								</div>
+								<div class="modal_body">
+									<p>You have been idle for a long time, click the button below if you are you are still there.</p>
+									<a class="btn btn-primary continue_btn" href="#" data-dismiss="modal">CLICK TO CONTINUE</a></div>
+							</div>
+						</div>
+					</div>
+					<!-- end of Modal Inactivity Notice Modal -->
+					<!-- Log out from another device modal -->
+					<!-- end of Log out from another device modal -->
+				</div>
+			</div>
+		</div>
+		
+		</div>
+
+		</div>
+	</div>
+
+
+
+	</div>
+</section>
+<!-- Clone Template -->
+
+
+<script>
+	// <![CDATA[
+	/* for showing of checklist details in chapter module page */
+
+	var checklist_details = JSON.parse('null');
+
+	if (checklist_details != null) {
+
+		if (Object.keys(checklist_details).length > 0) {
+			var days = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+			var level = ["", "Basic", "Intermediate", "Advanced", "Hacker"];
+			var details_to_append = '<ul class="list-inline information_checklist_list">';
+
+			$.each(checklist_details, function(index, value) {
+				switch (index) {
+					case 'is_optional':
+						status = (value == 1) ? "Optional" : "Mandatory";
+						details_to_append += '<li>' + status + '</li>';
+						break;
+					case 'day':
+						if (value && checklist_details.week != 0) {
+							details_to_append += "<li>Deadline: " + days[value] + " of Week " + checklist_details.week + "</li>"
+						}
+						break;
+					case 'difficulty_level':
+						if (value != 0 && value != null)
+							details_to_append += "<li>Difficulty Level: " + level[value] + "</li>";
+						break;
+					case 'estimated_time':
+						if (value != "" && value != null) {
+							details_to_append += "<li>Estimated Time: " + value + "</li>";
+						}
+						break;
+				}
+			});
+
+			details_to_append += "</ul>";
+			$('#assignment-metadata').html(details_to_append)
+		}
+	}
+	// ]]>
+</script>
+<script type="text/javascript"></script>
+<!-- Modals -->
+
+
+
+<div>
+	<script type="text/javascript">
+		// <![CDATA[
+		var io = io.connect('https://learn.codingdojo.com:8787', {
+			force_connection: true,
+			path: '/app1socket'
+		});
+		var pair_hangout = false;
+		var admin_as_student = "";
+
+		io.on("error", function() {
+			console.log('Failed connecting to node js server.');
+		});
+
+		if (admin_as_student != "true") {
+			io.on('server:logout', function() {
+				io.emit("student:signout");
+
+				$.ajax({
+					url: "/before_signout/",
+					type: "get",
+					success: function(values) {
+						if (values.status) {
+							window.location.href = "/signout";
+						}
+					}
+				});
+			});
+		}
+
+		$(document).on('ready page:load', function() {
+			io.on('need_signin', function(socket_data) {
+				io.emit('student:signin', {
+					user_information: {
+						"id": 13791,
+						"first_name": "Ruben",
+						"last_name": "Duran",
+						"email": "rd@rubenduran.net",
+						"image_url": "https://s3.amazonaws.com/General_V88/boomyeah2015/codingdojo/user13791/profile_pic/RdRams.png?1491511347",
+						"created_at": "2016-10-20T17:44:45.000Z",
+						"user_level": 1,
+						"applicant_id": 21064,
+						"is_automated": null,
+						"address": null,
+						"bootcamp_type": 3,
+						"bootcamp_date": "April 17, 2017",
+						"bootcamp_location": "3",
+						"updated_at": "2017-05-22T21:53:08.000Z",
+						"last_visited_url": "/m/7/3832/29055",
+						"last_used_filter": null,
+						"group_ids": [191]
+					},
+					ip_address: $("#page_info input:nth-child(6)").val(),
+					device: navigator.userAgent
+				}, function(data) {
+					new_track();
+				});
+			});
+
+			if (admin_as_student != "true") {
+				io.on('server:warning_duplicate_user', function(data) {
+					console.log("warning!!");
+					io.emit("track:logout_duplicate", data);
+				});
+			}
+
+			function new_track() {
+				io.emit('track:new', {
+					url: $("#page_info input:nth-child(1)").val(),
+					track_id: $("#page_info input:nth-child(2)").val(),
+					course_id: $("#page_info input:nth-child(3)").val(),
+					chapter_id: $("#page_info input:nth-child(4)").val(),
+					module_id: $("#page_info input:nth-child(5)").val(),
+					ip_address: $("#page_info input:nth-child(6)").val()
+				});
+			}
+
+			new_track();
+
+			$("#logout_button").click(function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				io.emit("student:signout");
+				window.location.href = "/signout";
+			});
+
+			io.on("new_chat_message", function(new_message) {
+				display_sent_chat_message(new_message);
+			});
+
+			io.on("send_new_message", function(message) {
+				display_received_chat_message(message);
+			});
+
+			io.on('make_user_unavailable', function(call_information) {
+				make_user_unavailable(call_information);
+			});
+
+			io.on('make_user_available', function(user) {
+				make_user_available(user);
+			});
+
+			io.on("invite_student", function(call_information) {
+				display_call_request(call_information);
+			});
+		});
+
+		// ]]>
+	</script>
+</div>
