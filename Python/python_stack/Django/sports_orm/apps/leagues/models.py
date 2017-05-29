@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class League(models.Model):
 	name = models.CharField(max_length=50)
 	sport = models.CharField(max_length=15)
