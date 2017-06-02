@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Truck Categories</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
+        {% load staticfiles %}
+         <link rel="stylesheet" href="{% static 'truck_tracker/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    </head>
+    <body>
+        <div class="ui center aligned container">
+            <h1>Hello</h1>
+            <div class="ui three column grid">
+
+            {% for category in truck_categories %}
+              <div class="column">
+                <div class="ui segment">
+                    <div class="ui fluid image">
+                        <img src="{{category.image_url}}">
+                        <div class="ui bottom attached label">{{category.category_name}}</div>
+                    </div>
+                  <img>
+                </div>
+              </div>
+              {% endfor %}
+
+             <!-- end of ui three column grid div -->
+          </div>
+          <!-- end of main div -->
+        </div>
+
+    </body>
+</html>

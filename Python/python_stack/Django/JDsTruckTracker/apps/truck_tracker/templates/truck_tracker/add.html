@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Add a Truck</title>
+    </head>
+    <body>
+        <h1>Hello</h1>
+        <form action="/add" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <select name="category">
+                <option value="$categoryName"></option>
+                <option value="$AnothercategoryName"></option>
+            </select>
+            <p>Primary Color: <input type="radio" name="primary_color"></p>
+            <p>Secondary Color: <input type="radio" name="secondary_color"></p>
+            <p>Image: <input type="file" name="img"></p>
+            <input type="submit" value="Add Truck">
+        </form>
+    </body>
+</html>
