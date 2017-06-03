@@ -21,6 +21,12 @@ class UserManager(models.Manager):
             errors.append('password must be at least 8 characters long')
         if post['pw'] != post['pwconf']:
             errors.append('password and confirmation fields do not match')
+        if post['phone_one'].isalpha():
+            errors.append('Phone number can only contain digits')
+        if post['phone_two'].isalpha():
+            errors.append('Phone number can only contain digits')
+        if post['phone_three'].isalpha():
+            errors.append('Phone number can only contain digits')
         check_user = self.filter(username=post['username'])
         if check_user:
             errors.append('Username already exist in the database')
@@ -69,6 +75,7 @@ class User(models.Model):
     l_name = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
+    phone = models.CharField(max_length=12)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = UserManager()
