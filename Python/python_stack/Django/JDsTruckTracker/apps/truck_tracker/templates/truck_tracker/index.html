@@ -20,6 +20,14 @@
             {% endfor %}
     </ul>
     {% endif %}
+    <header>
+        <ul>
+            <li><a href="/trucks">Trucks</a></li>
+            <li><a href="/add_truck">Add a Truck</a></li>
+            <li><a href="/">Sign Up</a></li>
+        </ul>
+    </header>
+
     <div class="ui center aligned container">
         <h2 class="ui center aligned icon header">
   <i class="circular users icon"></i>
@@ -74,10 +82,38 @@
 
 
             </div>
-            <input type="submit" value="register">
+            <input type="submit" value="Register">
 
             </form>
             </div>
+            <div class="ui form">
+                <form class="ui form" action="/login" method="POST">
+                    {% csrf_token %}
+                    <h4>Login</h4>
+
+                    <div class="fields">
+                        <div class="field">
+                            <label>Username</label>
+                            <input type="text" placeholder="Username" name='username'>
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <input type="password" placeholder="Password" name='pw'>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <input type="submit" value="Login">
+
+                </form>
+                </div>
+
+
+
+
             </div>
 </body>
 </html>

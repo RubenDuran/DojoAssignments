@@ -91,6 +91,7 @@ class Category(models.Model):
 class Truck(models.Model):
     user = models.ForeignKey('User',related_name="truck")
     category = models.ForeignKey('Category', related_name="truck")
+    document = models.FileField(upload_to='documents/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = TruckManager()
@@ -99,7 +100,3 @@ class Color(models.Model):
     primary_color = models.CharField(max_length=255)
     secondary_color = models.CharField(max_length=255)
     truck_color = models.ForeignKey('Truck', related_name="color")
-
-class Image(models.Model):
-    truck_pic = models.ForeignKey('Truck', related_name="images")
-    document = models.FileField(upload_to='documents/')

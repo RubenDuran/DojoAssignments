@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
-from . models import User, Image, Truck, Category, Color
+from . models import User, Truck, Category, Color
 import bcrypt, urllib
 from . import twilio_config as twilio
 
@@ -25,6 +25,9 @@ def add_truck(request):
     return render(request, 'truck_tracker/add.html', context)
 
 def add(request):
+    user_id = request.session.get('user_id')
+    if not user_id:
+        return redirect('/')
     if request.method == 'POST' and request.FILES['img']:
         category = request.POST['category']
         category = Category.objects.get(category_name=category)
@@ -32,11 +35,10 @@ def add(request):
         s_color = request.POST['secondary_color']
         img = request.FILES['img']
         print img
+        user = User.objects.get(pk = request.session['user_id'])
 
-        truck = Truck.objects.create(user=request.session['user'], category=category)
+        truck = Truck.objects.create(user=user, category=category, document= img)
         color = Color.objects.create(primary_color=p_color, secondary_color=s_color,truck_color=truck)
-        Image.objects.create(truck_pic=truck,document= img)
-
 
         # errors = Truck.objects.validate(request.POST)
         # if errors:
@@ -46,7 +48,7 @@ def add(request):
         #     print request.POST['category']
 
 
-    return redirect('/category/{}'.format(category))
+    return redirect('/category/{}'.format(category.category_name))
 
 def delete(request):
     return redirect('/trucks')
@@ -105,11 +107,22 @@ def category(request, id):
 
     category = urllib.unquote(id).decode('utf8')
     print category
-    trucks = Truck.objects.filter(category__category_name = category)
+    trucks = Color.objects.filter(truck_color__category__category_name = category)
+
+    # images = Image.objects.all()
+    # for image in images:
+    #     print image.truck_pic
+    #     print image.document
+    #     print image.truck_pic.pk
+    # for truck in trucks:
+    #     print truck.truck_color.images.image__document
+
+
+
 
     context = {
-        'trucks': trucks,
         'category': category,
+        'trucks': trucks,
     }
 
     return render(request,'truck_tracker/category.html', context)
