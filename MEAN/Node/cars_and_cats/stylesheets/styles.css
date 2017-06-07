@@ -1,0 +1,11 @@
+h1{
+    color: green;
+}
+.pic{
+    width: 200px;
+    height: 200px;
+}
+img{
+    max-height: 100%;
+    max-width: 100%
+}

@@ -13,6 +13,21 @@
 </head>
 
 <body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <header>
+        <ul>
+            <li><a href="/trucks">Trucks</a></li>
+            <li><a href="/add_truck">Add a Truck</a></li>
+            <li><a href="/">Sign Up</a></li>
+        </ul>
+    </header>
+
     <div class="ui center aligned container">
         <h2 class="ui center aligned icon header">
   <i class="circular users icon"></i>
@@ -24,7 +39,7 @@
 
 
         <div class="ui form">
-            <form class="ui form" action="/signup" method="POST">
+            <form class="ui form" action="/register" method="POST">
                 {% csrf_token %}
                 <div class="fields">
                     <div class="field">
@@ -62,14 +77,43 @@
                     </div>
                     <div class="field">
                         <label>~</label>
-                        <input type="text" maxlength="3" placeholder="(XXX)" name="phone_three">
+                        <input type="text" maxlength="4" placeholder="(XXXX)" name="phone_three">
                     </div>
 
 
             </div>
-            <div class="ui submit button">Submit</div>
+            <input type="submit" value="Register">
+
             </form>
             </div>
+            <div class="ui form">
+                <form class="ui form" action="/login" method="POST">
+                    {% csrf_token %}
+                    <h4>Login</h4>
+
+                    <div class="fields">
+                        <div class="field">
+                            <label>Username</label>
+                            <input type="text" placeholder="Username" name='username'>
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <input type="password" placeholder="Password" name='pw'>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <input type="submit" value="Login">
+
+                </form>
+                </div>
+
+
+
+
             </div>
 </body>
 </html>
