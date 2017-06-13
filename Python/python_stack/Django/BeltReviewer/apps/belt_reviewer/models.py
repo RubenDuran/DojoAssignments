@@ -1,5 +1,6 @@
+from __future__ import unicode_literals
 from django.db import models
-import re
+import re, bcrypt
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class UserManager(models.Manager):
@@ -31,12 +32,12 @@ class UserManager(models.Manager):
             errors.append('password must be at least 8 characters long')
         else:
             email = post['email']
-            pw = post['pw']
             check_email = self.filter(email=post['email'])
             if not check_email:
                 errors.append('no such user in database')
             else:
                 pw_check = self.get(email=post['email'])
+                pw  = bcrypt.hashpw(post['pw'].encode(), pw_check.password.encode())
                 if pw != pw_check.password:
                     errors.append('Incorect Password for user')
                 else:

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from . models import User, Author, Review, Book
 from django.db.models import Count
+import bcrypt
 
 # Create your views here.
 def index(request):
@@ -28,8 +29,6 @@ def add(request):
                 author_id = Author.objects.create(name=author, created_at='NOW()', updated_at='NOW()')
 
             user = User.objects.get(pk = request.session['user_id'])
-
-            print(author_id.id)
 
             messages.success(request, 'Successfully Added book')
 
@@ -73,8 +72,12 @@ def register(request):
                 messages.error(request, error)
         else:
             messages.success(request, 'Successfully registered!')
+            hashed = bcrypt.hashpw(request.POST['pw'].encode(), bcrypt.gensalt())
+            
+
+
             User.objects.create(name=request.POST['name'], alias=request.POST['alias'], email=request.POST[
-                                'email'], password=request.POST['pw'], created_at='NOW()', updated_at='NOW()')
+                                'email'], password=hashed, created_at='NOW()', updated_at='NOW()')
             email=request.POST["email"]
             user_details = User.objects.filter(email=email)
             user = user_details[0]

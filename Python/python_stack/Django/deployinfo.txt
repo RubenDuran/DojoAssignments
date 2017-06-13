@@ -1,0 +1,47 @@
+git remote add origin https://github.com/RubenDuran/DojoProject.git
+
+52.14.243.15
+
+ssh -i "dojo_test_key.pem" ubuntu@ec2-52-14-243-15.us-east-2.compute.amazonaws.com
+
+chmod 400 dojo_test_key.pem
+Connect to your instance using its Public DNS:
+ec2-52-14-243-15.us-east-2.compute.amazonaws.com
+
+git clone https://github.com/RubenDuran/DojoProject.git
+
+cd WishList
+
+gunicorn --bind 0.0.0.0:8000 WishList.wsgi:application
+
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/DojoProject
+ExecStart=/home/ubuntu/DojoProject/venv/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/DojoProject/WishList.sock WishList.wsgi:application
+[Install]
+WantedBy=multi-user.target
+
+sudo vim /etc/nginx/sites-available/WishList
+
+server {
+  listen 80;
+  server_name 52.14.243.15;
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location /static/ {
+      root /home/ubuntu/DojoProject;
+  }
+  location / {
+      include proxy_params;
+      proxy_pass http://unix:/home/ubuntu/DojoProject/WishList.sock;
+  }
+}
+
+sudo ln -s /etc/nginx/sites-available/WishList /etc/nginx/sites-enabled
+
+
+ubuntu@54.162.31.253:~$

@@ -1,4 +1,5 @@
 1. activate our django virtual environment.
+source DjangoEnv/bin/activate
 2. use django-admin to create our project.
 -- django-admin startproject main
 3. [optional] change the name of the external project folder.
@@ -34,13 +35,402 @@ urlpatterns = [
 ]
 12. create urls.py in apps/first_app
 from django.conf.urls import url
-import views
+from . import views
 urlpatterns = [
     url(r'^$', views.index)
 ]
+~~
+Route Parameters
+In our urls.py file:
+# Inside apps/appname/urls.py might look like this:
+from django.conf.urls import url
+from . import views
+urlpatterns = [
+	url(r'^/en/(?P<djangoversion>[0-9]\.[0-9])/topics/http/urls/$', views.index)
+]
+~~
 13. add view function to first_app/views.py
 def index(request):
-    return render('first_app/index.html')
+    return render(request,'first_app/index.html')
 14. create templates folder in first_app/
 15. create index.html in first_app/templates/first_app
-16. python manage.py runserver
+16.   to enable sessions # Need to be in same directory as manage.py file
+  > python manage.py makemigrations
+  > python manage.py migrate
+request.session['name'] # It's a dictionary, so you can attach key/value pairs
+17. python manage.py runserver
+
+========================================
+create a directory static in project and folder in static with project name and then create css,js, images folders
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'myportfolio/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+=======================================
+
+We are adding a form to ./vinmymvc/templates/vinmymvc/index.html
+
+<form action="/new_user" method="post">
+	{% csrf_token %}
+	<input type="text" name="first_name">
+	<input type="submit" value="submit">
+</form>
+
+Don't forget to add the new url to ./vinmymvc/urls.py:
+
+url(r'^new_user$',views.create)
+
+In ./vinmymvc/views.py
+
+from django.shortcuts import render, redirect
+def create(request):
+	if request.method == "POST":
+		print "*"*50
+		print request.POST
+		print request.method
+		print "*"*50
+		return redirect("/")
+	else:
+		return redirect("/")
+
+Key Terms
+request.POST
+--Data from POST request
+request.GET
+--Data from GET request
+request.method
+--Returns the method/HTTP verb associated with the request
+{% csrf_token %}
+--Prevents cross-site request forgery (place it in a form on the HTML/template side of your project)
+
+==================================Session
+Now let’s set up to use session!
+
+In our terminal, head to the directory where manage.py resides and run the following commands:
+
+  # Need to be in same directory as manage.py file
+  > python manage.py makemigrations
+  > python manage.py migrate
+
+Excellent. Not only does that annoying warning you’ve been suffering disappear, but now session is now available to us (as seen in that last line: Applying sessions.0001_initial... OK).
+
+Now we can restart our server and use session:
+
+  request.session # It's a dictionary, so you can attach key/value pairs
+
+Now, let's try out session. In your ./vinmymvc/views.py file, in the create function, add the following:
+
+request.session['name'] = request.POST['first_name']
+
+And in ./vinmymvc/index.html add the following in a line above your form
+
+{{request.session.name}}
+
+Useful session methods:
+request.session['key']
+~~This will retrieve (get) the value stored in key
+request.session['key'] = 'value'
+~~Set the value that will be stored by key
+del request.session['key']
+~~Deletes a session key if it exists, throws a keyError if it doesn’t. Use along with try ~~and except since it’s better to ask for forgiveness than permission
+'key' in request.session
+~~Returns a boolean of whether a key is in session or not
+{{ request.session.name }}
+~~Use dot notation (.) to access request.session keys from templates since square ~~brackets ([]) aren’t allowed there
+~~Errata note: In the video, we (I, MH) say session behaves the same as it does in Flask. ~~This is not true! Session in Django gets saved even if we leave the browser!
+
+===============DB'S=====================
+from __future__ import unicode_literals
+from django.db import models
+class People(models.Model):
+    first_name = models.CharField(max_length=38)
+    last_name = models.CharField(max_length= 38)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+#in views.py
+from django.shortcuts import render
+#look inside models.py for people class
+from .models import People
+def index(request):
+    People.objects.create(first_name=“Mike”,last_name=“Hannon”)
+    people = People.objects.all()
+    print people
+    return render(request,”third_app/index.html”)
+
+    Column Structure
+    Inside our model class:
+
+      from django.db import models
+      class ModelThing(models.Model):
+      #  column_name = models.Column_Type(optional_params)
+        first_name = models.CharField(max_length=30)
+
+    All we did was set the column (named first_name) to be saved as the type of whatever we specified (CharField), and provided an optional parameter (max_length=30).
+
+    Column types
+    You can find a full list of allowed column types in the documentation, but here are some of the main ones you'll be using.
+
+    CharField
+    Any text that a user may enter. This has one additional required parameter, max_length, that (unsurprisingly) is the maximum length of text that can be saved.
+    TextField
+    Like a CharField, but with no maximum length. Your user could copy the entire text of Atlas Shrugged into the field, and it would save in the database correctly.
+    IntegerField, BooleanField
+    Holds integers or booleans, respectively
+    DateTimeField
+    Used for date and times, such as timestamps or when a flight is scheduled to depart. This field can take two very useful optional parameters, auto_now_add=True, which adds the current date/time when object is created, and auto_now=True, which automatically updates any time the object is modified.
+    ForeignKey, ManyToManyField, OneToOneField
+    Used to indicate a relationship between models (anything that would require a JOIN statement in SQL). ForeignKey is for one-to-many relationships and goes in the model on the "many" side, just as the foreign key column goes in the SQL table on the "many" side.
+
+
+~~~~~~~~~~~~~
+# Inside models.py
+  from __future__ import unicode_literals
+  from django.db import models
+  # Create your models here.
+  class User(models.Model):
+      first_name = models.CharField(max_length=45)
+      last_name = models.CharField(max_length=45)
+      password = models.CharField(max_length=100)
+      created_at = models.DateTimeField(auto_now_add = True)
+      updated_at = models.DateTimeField(auto_now = True)
+  class Post(models.Model):
+      title = models.CharField(max_length=45)
+      message = models.TextField(max_length=1000)
+      # Notice the association made with ForeignKey for a one-to-many relationship
+			# There can be many posts to one User
+      user_id = models.ForeignKey(User)
+      created_at = models.DateTimeField(auto_now_add = True)
+      updated_at = models.DateTimeField(auto_now = True)
+Copy
+That ForeignKey statement is the equivalent of the one-to-many relationship shown in the ERD diagram.
+
+~~~~~~~~~~~~~
+In terminal, from your project's root directory, enter the following:
+
+> python manage.py shell
+Copy
+Your terminal output should look like so:
+
+
+
+Once you're in shell, you'll have access to the functions contained in your files. However, just like in your Python documents, you have to import the modules (files) that you need. Note: be sure to replace anything with {{}}, including the braces with the correct project and app names for your project. Enter the following with the appropriate values replaced.
+
+>>> from apps.{{app_name}}.models import {{table_name}}
+Copy
+Now we'll learn two ORM queries that will help us insert into and read from the database. We'll use the course example from the previous tab.
+
+>>> course = Course.objects.create(name="Python",description="Learn how to write Python like a boss.")
+>>> course
+# your result will look like:
+# <Course: Course object>
+Copy
+Now how can we look at what's in that Course object? We can call out individual attributes. Try: course.name. Your output should be: 'Python'
+
+Now we can get all the items from the table:
+
+>>> courses = Course.objects.all()
+>>> courses
+# your output will be:
+# <QuerySet [<Course: Course object>]>
+Copy
+NOW how do we view our data?
+
+>>> for course in courses:
+...    print course.name, course.description
+...
+# output should be:
+# Python Learn how to write Python like a boss.
+Copy
+Now we can insert a row and view all of the entries in that table. We'll try this a few times before we start running more complex
+
+book = Book.objects.create(title='Deep Work',author='Ruben', published_date='NOW()', category='self help', in_print=True)
+
+~~~~~~~~~~~~~~~# Inside your app's views.py file
+from django.shortcuts import render, HttpResponse
+# Pull the User class into the file
+from .models import User
+def index(request):
+    print User.objects.all()
+    # A list of objects (or an empty list)
+    User.objects.create(first_name="mike",last_name="mike",password="1234asdf")
+    # Creates a user object
+    print User.objects.all()
+    # A list of objects (or an empty list)
+    u = User.objects.get(id=1)
+    print u.first_name
+    u.first_name = "Joey"
+    u.save()
+    j = User.objects.get(id=1)
+    print j.first_name
+    # Gets the user with an id of 1, changes name and saves to DB, then retrieves again...
+    print User.objects.get(first_name="mike")
+    # Gets the user with a first_name of 'mike' *** THIS MIGHT NEED TO BE CHANGED ***
+    users = User.objects.raw("SELECT * from {{appname}}_user")
+    # Uses raw SQL query to grab all users (equivalent to User.objects.all()), which we iterate through below
+    for user in users:
+      print user.first_name
+    return HttpResponse("ok")
+
+Know that this code: User.objects.raw("SELECT * from {{appname}}_user") relies on the fact that Django builds our database's tables according to a particular pattern. The pattern is: appname + _ + lowercase_model_name. If you need to create a raw query and aren't sure what the table name is you can always find it by printing the following: User._meta.db_table
+
+~~~~~~~~~~~~~~
+Get
+.get(field="val") returns the one object that matches a given condition. If we wanted the one user with last name "Thomas", we could say:
+
+  user = User.objects.get(last_name="Thomas")
+  print("QUERY RESULT:", user)
+
+  However, if the condition is true for more than one item, or no item, using .get will throw an error. Only use .get if you know that there's exactly one matching item! For this reason, this method works best when used with ID numbers.
+
+    user = User.objects.get(id=6)
+    print("QUERY RESULT:", user)
+
+    Filter
+    .filter(field="val"...) returns all of the records where a given condition is true. Here's how we'd find all of the "Thomas"es:
+
+      user = User.objects.filter(last_name="Thomas")
+      print("QUERY RESULT:", user)
+
+      What's the difference between .get and .filter in this case? Note that .get returns the object itself, while .filter returns a QuerySet (a type of object that contains a set of query objects). If we changed the code to look like this:
+
+   user = User.objects.filter(last_name="Thomas")
+   print("QUERY RESULT:", user.first_name)
+ Copy
+ ...we would get an error, because a QuerySet doesn't have a .first_name:
+
+ However, because it's returning a QuerySet and not an object, .filter has no problem if there's not exactly one matching record.
+
+  user = User.objects.filter(first_name="Horace")
+  print("QUERY RESULT:", user)
+
+  Exclude
+ .exclude(field="val"...) is the opposite of .filter: It returns all of the records where a given condition is false. Here's every user NOT surnamed "Thomas":
+
+   user = User.objects.exclude(last_name="Thomas")
+   print("QUERY RESULT:", user)
+
+   Conditions
+ You can do a more complicated search than just if a given field is equal to a given value. Instead of just passing in the field name as a keyword argument to .get, .filter, or .exclude, you'd pass the field name__lookup type (that's a double underscore, also known as a "dunder" for people on-the-go). For instance, to find users whose first name begins with "S":
+
+   user = User.objects.filter(first_name__startswith="S")
+   print("QUERY RESULT:", user)
+
+   That's not the only type of search you can do. Here's everyone whose first name does not contain an "E":
+
+     user = User.objects.exclude(first_name__contains="E")
+     print("QUERY RESULT:", user)
+
+   Every user older than 80:
+
+     user = User.objects.filter(age__gt=80)
+     print("QUERY RESULT:", user)
+
+
+     Combining queries
+     Queries can be chained together:
+
+       user = User.objects.filter(last_name__contains="o").exclude(first_name__contains="o")
+       print("QUERY RESULT:", user)
+
+       user = User.objects.filter(age__lt=70).filter(first_name__startswith="S")
+   print("QUERY RESULT:", user)
+
+       If it's the same type of query, instead of being chained you can multiple arguments to the function:
+
+     user = User.objects.filter(age__lt=70, first_name__startswith="S")
+     print("QUERY RESULT:", user)
+
+     These are cases where the conditions are joined with AND, as in, all users younger than 70 AND whose first name starts with "S". If you want OR, as in users who are younger than 70 OR whose first_name starts with "S", you can use | (the set union operator):
+
+       user = User.objects.filter(age__lt=70)|User.objects.filter(first_name__startswith="S")
+       print("QUERY RESULT:", user)
+
+
+~~~~~~~~~~~~~~~views.py
+
+def index(request):
+  users = User.objects.filter(age__lt=70)|User.objects.filter(first_name__startswith="S")
+  context = {"users": users}
+  return render(request, "users/index.html", context)
+
+~~~~~~~~~~~~~~html
+  <h1>Users</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Age</th>
+  </tr>
+  {% for user in users %}
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>{{ user.age }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+
+~~~~~~~~~~~~~~~~~in index.html
+
+  <form action="/comments/{{ blog.id }}" method="post">
+   {% csrf_token %}
+   <textarea name="comment" rows="8" cols="80"></textarea>
+   <input type="submit" value="Enter Comment on This Blog">
+  </form>
+Copy
+in urls.py
+
+url(r'^comments/(?P\d+)$', views.comments),
+Copy
+in views.py
+
+def comments(request,id):
+  blog = Blog.objects.get(id=id)
+  Comment.objects.create(comment=request.POST['comment'],blog=blog)
+  return redirect('/')
+
+  in index.html
+
+  {% for comment in blog.comment_set.all() %}
+   {{ comment.comment }}
+  {% endfor %}
+
+
+validation in model manager not views
+
+````````````````````
+Reverse Look-ups
+You may have noticed that we haven't mentioned the related_name field yet. This is used for a reverse look-up. In addition to placing a field on our book that holds the author information, Django has also placed a field on the author that holds information about all of their books. Just refer to some_author.books.all()! (You need to say .all because there could potentially be many books connected to this author, not just one.) This can be especially convenient on a template:
+
+book_project/apps/books/views.py
+
+def index(request):
+  context = {"authors": Author.objects.all()}
+  return render(request, "books/index.html", context)
+Copy
+book_project/apps/books/templates/books/index.html
+
+<h1>Author List</h1>
+<ul>
+  {% for author in authors %}
+    <li>{{author.name}}
+      <ul>
+        {% for book in author.books.all %}
+          <li><em>{{book.title}}</em></li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+
+
+======================
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
+if not EMAIL_REGEX.match(email):
+    errors.append('Invalid Email Address!')
+
+    =========================

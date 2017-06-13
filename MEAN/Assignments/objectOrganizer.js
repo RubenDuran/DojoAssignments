@@ -1,0 +1,78 @@
+/* **************** Game Constructor ******************
+private vars: consumerPrice, dealerCost
+private methods: myPrivateFunction: just console.logs, no logic
+public properties:  _name: acquired from parameters
+                    type: constant, 'board game'
+                    player: array
+
+
+public methods:     addPlayer: adds a player by name to player array
+                    showPrivateVariables: console.logs our private variables
+on run: runs myPrivateFunction
+returns: ourGame object.
+*****************  END *******************/
+
+
+function GameConstructor(consumerPrice,dealerCost,name, inStock){
+
+
+  var consumerPrice = consumerPrice;
+  var dealerCost = dealerCost;
+  var ourGame = {};
+
+
+  ourGame._name = name;
+  ourGame.type = 'board game';
+  ourGame.player = [];
+
+
+  ourGame.addPlayer = function(player_name){
+    ourGame.player.push(player_name);
+  }
+  ourGame.showPrivateVariables = function(){
+    console.log(dealerCost);
+    console.log(consumerPrice);
+  }
+
+
+  function myPrivateFunction(){
+    console.log('hello, I am going to create a new object when I am returned!');
+  }
+
+
+  myPrivateFunction();
+  return ourGame;
+}
+
+// ==========================
+function NinjaConstructor(name, age, prevOccupation) {
+  var ninja = {};     // the object that will eventually be returned
+/*
+Addition of properties to ninja.
+*/
+  ninja.name = name;
+  ninja.age = age;
+  ninja.prevOccupation = prevOccupation;
+/*
+Addition of methods to ninja
+*/
+  ninja.introduce = function() {
+    console.log("Hi my name is " + ninja.name + ". I used to be a " + ninja.prevOccupation + " and now I'm a Ninja!");
+  }
+/*
+return ninja
+*/
+  return ninja;
+}
+
+
+                      // Create the Andrew Ninja
+var Andrew = NinjaConstructor("Andrew", 24, "Teacher");
+Andrew.introduce();
+                      // Create the Michael Ninja
+var Michael = NinjaConstructor("Michael", 34, "Founder");
+                      // here we redefine the introduce method for a particular "Instance" or Object
+Michael.introduce = function() {
+  console.log("I am the Sensei!")
+}
+Michael.introduce();

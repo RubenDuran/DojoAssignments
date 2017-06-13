@@ -1,0 +1,97 @@
+Create an empty folder called TestProject
+
+1) navigate to that folder using your terminal/command-prompt/bash.
+2) in terminal/command-prompt/bash type npm init -y
+  this command basically says: we are using this folder for an npm based project, (npm init), the (-y) says fill the package.json with the base information.
+
+3) Now let’s install ejs and express, from command-line in the same folder:
+  npm install express --save
+  npm install ejs --save
+  npm install body-parser --save
+
+  OR
+
+  npm install express --save ejs --save body-parser --save
+
+4) create app.js or server.js
+
+5) create static or public folder in main folder where app.js is found
+
+6) app.use(express.static(__dirname + "/static"));
+    // this is the line that tells our server to use the "/static" folder for static content
+
+7) create views folder in main folder where app.js is found
+
+    // This sets the location where express will look for the ejs views
+    app.set('views', __dirname + '/views');
+    // Now lets set the view engine itself so that express knows that we are using ejs as opposed to another templating engine like jade
+    app.set('view engine', 'ejs');
+
+8) create index.ejs file in views and css js in static/public
+
+
+9)APP.JS code
+
+// require express
+var express = require("express");
+// path module -- try to figure out where and why we use this
+var path = require("path");
+// create the express app
+var app = express();
+var mongoose = require('mongoose');
+// This is how we connect to the mongodb database using mongoose -- "basic_mongoose" is the name of
+//   our db in mongodb -- this should match the name of the db you are going to use for your project.
+mongoose.connect('mongodb://localhost/basic_mongoose');
+
+var UserSchema = new mongoose.Schema({
+ name: String,
+ age: Number
+})
+mongoose.model('User', UserSchema); // We are setting this Schema in our Models as 'User'
+var User = mongoose.model('User') // We are retrieving this Schema from our Models, named 'User'
+
+
+var bodyParser = require('body-parser');
+// use it!
+app.use(bodyParser.urlencoded({ extended: true }));
+// static content
+app.use(express.static(path.join(__dirname, "./static")));
+// setting up ejs and our views folder
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'ejs');
+// root route to render the index.ejs view
+app.get('/', function(req, res) {
+ res.render("index");
+})
+// post route for adding a user
+app.post('/users', function(req, res) {
+ console.log("POST DATA", req.body);
+ // This is where we would add the user to the database
+ // Then redirect to the root route
+ res.redirect('/');
+})
+// tell the express app to listen on port 8000
+app.listen(8000, function() {
+ console.log("listening on port 8000");
+});
+
+
+~~~~~~~~~~~~~~~~~~~
+to add socket.io, add following line AFTER our server listener
+var io = require('socket.io').listen(server);
+
+// Whenever a connection event happens (the connection event is built in) run the following code
+io.sockets.on('connection', function (socket) {
+  console.log("WE ARE USING SOCKETS!");
+  console.log(socket.id);
+  //all the socket code goes in here!
+})
+
+
+----------------------------
+MONGO
+----------------------------
+Start MongoDB Server: (open your terminal and enter the following): sudo mongod
+Open Mongo Terminal: (open your terminal and enter the following): mongo
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,123 @@
+If you don't have Homebrew, get it. Homebrew is a package manager/install tool and the reason why installing things on Macs takes literally no time at all. Get Homebrew here. Your life is now complete. Simply run:
+
+brew install Mongodb
+That will install MongoDB. Now we have to make the folders where it will store your data: Open a command terminal and type in the following:
+
+cd /      // go to the root directory
+mkdir data      // ** make a folder called data
+cd data      // go into data folder
+mkdir db      // ** make another folder called db
+**You might have to preface the mkdir commands with 'sudo' (i.e. 'sudo mkdir data')**  Running 'sudo' before executing a terminal command gives the user more authorization to make files/folders a sensitive area. Note, 'sudo' might prompt you for your password. Do it.
+
+Running the MongoDB server:
+Please take a moment to acknowledge the fact you are not running a Windows machine. Now, to run your MongoDB server, simply type...
+
+mongod
+If that doesn't work, try...
+
+sudo mongod      // run the same command with more privileges
+That's it. If that was successful, the terminal should fill with a bunch of information and you should not be able to see your normal terminal prompt line, only a beeping underscore. This means your server is up and running.  What we have done is to run our database server and thereby open our MongoDB databases up for connections so we can query the DB and do CRUD operations.
+
+DON'T CLOSE THIS WINDOW OR TYPE ANYTHING ELSE!
+It's much easier to stop your server if you leave this window up.  If you do close it, the MongoDB server will keep running in the background.  Forever.
+
+To shut down your server from the server window, press...
+
+control + c  //  on your keyboard in a terminal window.
+Connect to your database:
+To connect to your MongoDB databases, open a new tab in your terminal or a new terminal window and type...
+
+mongo
+Now you should see the terminal cursor become a single arrow and beeping underscore. We're in!
+
+Shutting down if your mongod window got closed:
+This is harder.  Open a terminal window and type:
+
+ps -ax | grep mongo
+then copy the number on the left of the row that shows 'sudo mongo' (or if that's not there, just 'mongo')  This is the process ID of the mongod command you ran.  Take that number and type
+
+sudo kill *that_number*
+And you'll be good.  The kill command tells a process ID to terminate.  Intense terminal stuff, huh?
+
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Database Type:	SQL	Mongo
+Database	Schema	Database (db)
+Collection of related records	Tables	Collections
+Each one record in the collection of records	Row / Record	Document
+MySQL Database Schema == MongoDB Database (db)
+No surprises here; the database is still the unit we use to hold an entire project's data. MongoDB is crazy, but not crazy enough to not need to use the term database! Note that from our Mongo shell, we have access to all the databases stored on our Mongo server.
+
+Show all databases available on our current MongoDB server	Example:
+show dbs
+Show current database selected	Example:
+db
+Change to another database
+Note: If the database you're trying to switch to does not exist,
+Mongo shell will create a new database and switch to it.	Pattern:
+use DB_NAME
+
+Example:
+use message_board_db
+Delete database
+Note: db.dropDatabase() will delete the current database in use.
+
+Example:
+use message_board_db
+db.dropDatabase()
+SQL: Tables == MongoDB: Collections
+A SQL database is comprised of tables. Tables contain groups of similarly-structured pieces of data. This shouldn't be new to you, but it is important to take a step back and review what you've learned through a more theoretical lens. MongoDB databases are comprised of collections. A collection is the MongoDB analog to a SQL table.
+
+View all collections in a MongoDB	Example:
+show collections
+Create a new collection in the current database	Pattern:
+db.createCollection("COLLECTION_NAME")
+
+Example:
+db.createCollection("ninjas")
+Destroy a collection 	Pattern:
+db.COLLECTION_NAME.drop()
+
+Example:
+db.ninjas.drop()
+There's not much to say about collections right now. That's because collections are really just in place to corral individual records.  There is no structure to a collection, which is part of why MongoDB is powerful, but also part of why a NoSQL database is not a one-size-fits-all solution.  This is very different than tables in a SQL database; tables are normally where we define all the structure of a particular facet of our database in a SQL database.  Column names and their data types are very important in the world of relational databases.  In NoSQL land, they are much less important, as you will soon find out.
+
+SQL: Row / Record == MongoDB: Document (JSON object)
+This is it.  This is why we use MongoDB.  SQL table rows have the rigid structure: every entry in a database (i.e. every row) has the same fields.  This is not the case in MongoDB. Each document is a JSON object and is able to have any number of key-value pairs you so desire.  And just like in regular Javascript objects, we can add key-value pairs to objects on the fly.  When you use a NoSQL database, you gain speed but lose rigidity; you trade structure for flexibility.  This should make sense.  Remember, people use Mongo for its speed. If we can't write to objects on the fly, we might slow down our transactions and that would be counterproductive.
+
+Technically, we've lied. MongoDB doesn't use JSON objects to store your data. They use what's called BSON (Binary JSON). BSON is friendlier to store (due to it being binary; don't stress about this) and can support a few more things (like dates, which are not part of JSON, but crucial for databases). But for all intents and purposes, MongoDB documents are to be treated and used as if they were ordinary JSON. Trust us!
+
+
+
+------------------------------]
+If I wanted to get all the Dojos whose number of students is greater than 15, I would run the following:
+
+db.dojos.find({number_of_students: {$gt: 15
+
+
+And we wanted to add an element in the interests array. The operator we would use is called the $push operator, which should sound very familiar. To add the interest 'snowboarding' to the student document, we would run...
+
+db.students.update({_id: ObjectId("5463d871a6a96d5ed6252f4d")}, {$push: {interests: 'snowboarding'}})
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+name	description
+$gt (greater than)	Use to query selectively on numerical-valued fields
+$gte (greater than or equal to)	Use to query selectively on numerical-valued fields
+$lt (less than)	Use to query selectively on numerical-valued fields
+$lte (less than or equal to)	Use to query selectively on numerical-valued fields
+$in (in array)	Use to find documents who have a particular value within an array.
+
+
+
+Name	Description
+$push	Push to an array contained within a document.
+$pop	Removes either the first or last element from an array. EX:
+db.COLLECTION.update({QUERY}, {$pop: {array_key: (1 or -1)}})
+
+Use 1 for the last item in the array, -1 for the first item.
+$addToSet	It functions just like $push.  However, $addToSet only adds to the specified array if the value doesn't already exist (thereby preventing duplicate entries).
+$pull	Removes a specified value from an array, unlike $pop, which removes by location. Ex:
+db.COLLECTION.update({QUERY}, {$pull: {array_key: VALUE}})
+
+This will remove all instances of VALUE from the documents with the array specified by the array_key that match QUERY.

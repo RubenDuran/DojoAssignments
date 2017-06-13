@@ -1,0 +1,43 @@
+MVC
+What is it?
+(If you've already been familiarized with what an MVC framework is, you may skip this tab.)
+
+MVC (Model-View-Controller) architecture is a way of organizing code to help create robust applications. You can imagine that creating all of the code for a website like Facebook would get pretty messy if you use the techniques that you've learned so far. By combining OOP with our knowledge of the different web components, we can organize our code to be more modular and we can use an MVC framework to help us.
+
+Most ALL enterprise level web applications are built using an MVC framework and it's CRITICAL that you understand how to build your web application using an MVC framework.
+
+Image analogy
+Imagine that you and your 2 friends are given 100,000 image files to organize however you think best. How many ways could you organize these files? A lot of ways! You choose to organize these files by the theme of the image, and you start categorizing each image, adding each image in respective categories/folders (e.g. Christmas, New Year, Summer Vacations, etc).
+
+Then, someone new joins your group and you are given additional 50,000 image files to organize, except this time, the new guy who joins your group wants to organize these files in completely different ways. The new person argues that you should organize these image files by the date of when the picture was taken, etc. You decide to re-organize all the images using new directory structure.
+
+Then you join a company B, who has millions of photos and they have a completely different way of organizing these photos! For whatever reason, the first person who joined company B started organizing their photos by the color of the background of each image (e.g. black, white, yellow, blue, etc).
+
+In this analogy, you can see how there are many different ways to organize things and different people would have different opinions about how things should be done. How you organize things also depends on your purpose/objective.
+
+Software
+Let's now think about software. When building a software, there are many features we need to build (e.g. loading database, doing a query to the database, rendering HTML, displaying errors, writing files, doing string manipulations, doing math calculations, rendering JSON, etc). Let's say you had about 100,000 features that needed to be built but instead of putting all these 100,000 features in a single page, you decide to organize them into different classes (just like in the earlier analogy how you decided to create folders to store the image). How many ways are there to organize these 100,000 features to different classes? Probably unlimited ways.
+
+In software, this poses a lot of problems if developers don't have rigid rules on how to group features. For example, imagine the following scenarios.
+
+You join a company and the way they organized their codes are very hard to follow. To debug a simple feature, you actually have to go through at least 10-15 files to even find out what's happening. You also don't know what certain methods are inside a specific class because the name of the class doesn't make much sense (e.g. the previous developer named it class ACD, BCD, EEE, which probably made sense to that developer, but for you, it doesn't make any sense why certain classes are named that way)
+You join a company who has 100+ classes and 100+ methods inside each class. The way these classes are named are confusing again and you were just given 20 new features to implement but you can't even understand what most of these classes do, let alone where in the class you need to add the feature you want. It takes you a long time to understand what the previous developers wrote and why he/she did it, although you feel like there is a more intuitive way of organizing the codes.
+There are countless ways where with just OOP, developers can organize their codes in so many different ways that when multiple developers are working together, it would benefit if some hard rules are implemented. That's the benefit of using an MVC framework. Using a framework, it enforces some rules, mainly that:
+
+all things that deal with data/database need to be inside a folder/class called Models.
+all things that deal with HTML rendering need to be inside a folder/class called Views.
+all things that deal with business logic and handling the URL request need to be inside a folder/class called Controller.
+we'll have a single file that is in a way the master of all the URL requests and we'll have this file load all the necessary files before any web application is called. This is commonly called Routes.
+finally, we'll have a config folder where things related to configuring the app (database session, security encryption, etc) can be stored. This eliminates some of the configuration settings appearing randomly in the app.
+Not only does enforcing these rules make it easier for multiple developers to work together but also a framework would have built in functions/methods that a lot of developers probably need, so instead of rebuilding each of these functions/libraries on your own, you could just use preexisting functions/methods.
+
+Disadvantages
+What would be the downsides of using an MVC framework? There would be some downsides. Some we can think of are:
+
+There is overhead to running a framework (as it loads a lot of files for each URL request). This could slow things down a little bit.
+There may be a security bug with the framework itself (this has happened with even some popular frameworks like Rails where all apps built with that framework were vulnerable for hacker attacks) which you probably don't have control of.
+Whoever is supporting the development of that framework may go out of business and the framework may no longer be updated.
+Some of the methods/functions you are using were written by other developers so you will have less clue about what's actually happening behind the scene. In a way, you're dependent on other people's code, which may not be so bad, but also, you have less control over what's happening in the code.
+In many ways, though, these disadvantages are not as significant as the benefits of using an MVC framework, and really to join any enterprise software company, they expect that you know how to use an MVC framework.
+
+Another benefit by the way of using an MVC framework is that once you know how to use one MVC framework it becomes a lot easier to pick up another MVC framework, even if it's done in another language.

@@ -1,0 +1,11 @@
+>>> from apps.first_db.models import Product
+>>> products = Product.objects.all()
+>>> products
+<QuerySet [<Product: Product object>, <Product: Product object>, <Product: Product object>, <Product: Product object>]>
+>>> for prod in products:
+...     print(prod.name)
+...
+MaxD
+MaxD
+Grave Digger
+Zombie

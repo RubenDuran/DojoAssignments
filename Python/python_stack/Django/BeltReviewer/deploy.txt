@@ -1,0 +1,59 @@
+IPv4 Public IP
+52.15.186.240
+
+run this on your keyfile
+chmod 400 demo_deploy_key.pem
+
+
+connect with this
+ssh -i "demo_deploy_key.pem" ubuntu@ec2-52-15-186-240.us-east-2.compute.amazonaws.com
+
+get to keys folder by:
+~/Desktop/keys
+
+ubuntu@ip-172-31-19-230
+
+
+# Inside settings.py
+# modify these lines
+
+DEBUG = False
+ALLOWED_HOSTS = ['{{yourEC2.public.ip}}']
+
+
+# add the line below to the bottom of the file
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+gunicorn --bind 0.0.0.0:8000 BeltReviewer.wsgi:application
+
+
+ubuntu@54.162.31.253:~myRepoName$ sudo vim /etc/systemd/system/gunicorn.service
+
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/deployTest
+ExecStart=/home/ubuntu/deployTest/venv/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/deployTest/BeltReviewer.sock BeltReviewer.wsgi:application
+[Install]
+WantedBy=multi-user.target
+
+sudo vim /etc/nginx/sites-available/BeltReviewer
+
+server {
+  listen 80;
+  server_name 52.15.186.240;
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location /static/ {
+      root /home/ubuntu/deployTest;
+  }
+  location / {
+      include proxy_params;
+      proxy_pass http://unix:/home/ubuntu/deployTest/BeltReviewer.sock;
+  }
+}
+
+sudo ln -s /etc/nginx/sites-available/BeltReviewer /etc/nginx/sites-enabled

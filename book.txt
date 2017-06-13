@@ -1,0 +1,9 @@
+>>> for b in books:
+...     print(b.title, b.author, b.published_date, b.category, b.in_print)
+...
+Deep Work Ruben 2017-05-24 00:11:40.910280+00:00 self help True
+Light Work Joe 2017-05-24 00:16:34.459065+00:00 cooking True
+Like Mike Robert 2017-05-24 00:18:04.954822+00:00 fiction True
+Python 101  Sara 2017-05-24 00:19:23.424295+00:00 non-fiction True
+
+>>>

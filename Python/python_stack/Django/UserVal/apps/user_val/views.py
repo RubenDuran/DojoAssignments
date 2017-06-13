@@ -6,7 +6,7 @@ from .models import User
 def index(request):
     return render(request,'user_val/index.html')
 
-def validate(request):
+def register(request):
     if request.method == 'POST':
         errors = User.objects.validate(request.POST['user_name'])
         if errors:
