@@ -1,0 +1,20 @@
+.nav1{
+    display: inline-block;
+    width: 30%;
+    padding: 20px;
+    vertical-align: top;
+}
+
+.main1{
+    display: inline-block;
+    width: 60%;
+    padding: 20px;
+    vertical-align: top;
+}
+.header1{
+    width: 90%;
+    padding: 20px;
+}
+body{
+    width: 970px;
+}
