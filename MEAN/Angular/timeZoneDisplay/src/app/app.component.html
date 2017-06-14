@@ -1,0 +1,13 @@
+
+<div style="text-align:center">
+  <h1>US Time Zone Display</h1>
+  <div class="buttonRow">
+      <button (click)="pst()" type="button" name="PST" [ngClass]="{ 'on': pstSwitch }">PST</button>
+      <button (click)="mst()" type="button" name="MST" [ngClass]="{ 'on': mstSwitch }">MST</button>
+      <button (click)="cst()" type="button" name="CST" [ngClass]="{ 'on': cstSwitch }">CST</button>
+      <button (click)="est()" type="button" name="EST" [ngClass]="{ 'on': estSwitch }">EST</button>
+      <button (click)="clear()" type="button" name="Clear">Clear</button>
+  </div>
+<p>{{ currTime | date:'medium' :Z}}</p>
+
+</div>
