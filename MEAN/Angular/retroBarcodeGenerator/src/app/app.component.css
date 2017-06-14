@@ -1,0 +1,119 @@
+.square{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.AliceBlue{
+    background-color: #F0F8FF;
+    }
+.AntiqueWhite{
+    background-color: #FAEBD7;
+}
+.Aqua{
+    background-color: #00FFFF;
+}
+.Aquamarine{
+    background-color: #7FFFD4;
+}
+.Black{
+    background-color: #000000;
+}
+.Blue{
+    background-color: #0000FF;
+}
+.BlueViolet{
+    background-color: #8A2BE2;
+}
+.Brown{
+    background-color: #A52A2A;
+}
+.CadetBlue{
+    background-color: #5F9EA0;
+}
+.Chartreuse{
+    background-color: #7FFF00;
+}
+.Chocolate{
+    background-color: #D2691E;
+}
+.Coral{
+    background-color: #FF7F50;
+}
+.CornflowerBlue{
+    background-color: #6495ED;
+}
+.Crimson{
+    background-color: #DC143C;
+}
+.DarkCyan{
+    background-color: #008B8B;
+}
+
+.DarkGreen{
+    background-color: #006400;
+}
+.DarkRed{
+    background-color: #8B0000;
+}
+.DarkSlateGrey{
+    background-color: #2F4F4F;
+}
+.DimGray{
+    background-color: #696969;
+}
+.DodgerBlue{
+    background-color: #1E90FF;
+}
+.FireBrick{
+    background-color: #B22222;
+}
+.Gold{
+    background-color: #FFD700;
+}
+.GreenYellow{
+background-color: #ADFF2F;
+    }
+.LightBlue{
+    background-color: #ADD8E6;
+}
+.LightCoral{
+    background-color: #F08080;
+    }
+.LightSeaGreen{
+    background-color: #20B2AA;
+}
+.LightSkyBlue{
+    background-color: #87CEFA;
+    }
+
+.Magenta{
+    background-color: #FF00FF;
+}
+.Maroon{
+    background-color: #800000;
+    }
+.MediumTurquoise{
+    background-color: #48D1CC;
+}
+.MediumVioletRed{
+    background-color: #C71585;
+}
+.Orange{
+    background-color: #FFA500;
+    }
+.OrangeRed{
+    background-color: #FF4500;
+}
+.PaleVioletRed{
+    background-color: #DB7093;
+    }
+.RebeccaPurple{
+    background-color: #663399;
+}
+.Tan{
+    background-color: #D2B48C;
+    }
+.Turquoise{
+    background-color: #40E0D0;
+}
