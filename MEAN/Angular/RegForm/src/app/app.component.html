@@ -1,0 +1,94 @@
+<h1>Registration</h1>
+<div class="success" *ngIf='registered'>
+    <p>Thank you for registering with us {{user.f_name}}. We just sent you a confirmation email at {{user.email}}, and we will send all mail to {{user.add}} {{user.city}} {{user.state}}.</p>
+    <p>Have a wonderful day!</p>
+
+</div>
+
+<form (submit)="onSubmit()">
+  <p> First Name: <input
+    type="text"
+    name="f_name"
+    required
+    minlength="4"
+    maxlength="24"
+    [(ngModel)]="user.f_name"
+    #f_name="ngModel"
+  />
+  <span *ngIf="f_name.invalid"> {{ f_name.errors | json }} </span>
+</p>
+  <p>Last Name: <input
+    type="text"
+    name="l_name"
+    required
+    minlength="4"
+    maxlength="24"
+    [(ngModel)]="user.l_name"
+    #l_name='ngModel'
+  /><span *ngIf="l_name.invalid"> {{ l_name.errors | json }} </span></p>
+  <p>Email: <input
+    type="text"
+    name="email"
+    required
+    minlength="4"
+    maxlength="24"
+    [(ngModel)]="user.email"
+    #email='ngModel'
+  /><span *ngIf="email.invalid"> {{ email.errors | json }} </span></p>
+  <p>Password: <input
+    type="text"
+    name="pw"
+    required
+    minlength="10"
+    maxlength="24"
+    pattern="^([a-zA-Z0-9@*#]{8,15})$"
+    [(ngModel)]="user.pw"
+    #pw='ngModel'
+  /><span *ngIf="pw.invalid"> {{ pw.errors | json }} </span></p>
+  <p>Password Confirmation: <input
+    type="text"
+    name="pwconf"
+    required
+    minlength="10"
+    maxlength="24"
+    pattern="^([a-zA-Z0-9@*#]{8,15})$"
+    [(ngModel)]="user.pwconf"
+    #pwconf='ngModel'
+  /><span *ngIf="user.pw !== user.pwconf "> Password must match </span></p>
+  <p>Street Address: <input
+    type="text"
+    name="add"
+    required
+    minlength="10"
+    maxlength="24"
+    [(ngModel)]="user.add"
+    #add='ngModel'
+  /><span *ngIf="add.invalid"> {{ add.errors | json }} </span></p>
+  <p>Unit/Apt # <input
+    type="text"
+    name="unit"
+    minlength="10"
+    maxlength="24"
+    [(ngModel)]="user.unit"
+    #unit='ngModel'
+  /></p>
+  <p>City: <input
+    type="text"
+    name="city"
+    required
+    minlength="10"
+    maxlength="24"
+    [(ngModel)]="user.city"
+    #city='ngModel'
+  /><span *ngIf="city.invalid"> {{ city.errors | json }} </span></p>
+  <p>State: <input
+    type="text"
+    name="state"
+    required
+    minlength="10"
+    maxlength="24"
+    [(ngModel)]="user.state"
+    #state='ngModel'
+  /><span *ngIf="state.invalid"> {{ state.errors | json }} </span></p>
+  <input  *ngIf='f_name.valid && l_name.valid && email.valid && pw.valid && pwconf.valid && add.valid && city.valid && state.valid' type="submit">
+</form>
