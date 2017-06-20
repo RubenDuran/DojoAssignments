@@ -1,0 +1,6 @@
+<h2>Here is a list of all messages:</h2>
+<fieldset *ngFor="let message of myMessages">
+  <p>{{message.content}}</p>
+  <p>- {{message.name}}, on {{message.createdAt | date:"short"}}</p>
+
+</fieldset>
