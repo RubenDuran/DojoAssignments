@@ -15,7 +15,7 @@ export class GitUsersService {
   addUser(userInfo){
   	// we need avatar_url, login, followers, public_repos
   	var postData = {
-  		score: (userInfo.followers+userInfo.public_repos)*12,
+  		score: ((userInfo.followers*2)+userInfo.public_repos)*12,
   		imagePath: userInfo.avatar_url,
         username: userInfo.login,
   	}
