@@ -1,0 +1,8 @@
+fieldset{
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    margin: 30px;
+    vertical-align: top;
+    text-align: center;
+}

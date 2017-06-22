@@ -1,0 +1,16 @@
+<div *ngIf="!battleStarted">
+	<app-player1
+	(player1Event)="dataFromPlayer1($event)"
+	[playerInfo]="player1"></app-player1>
+	<app-player2
+	(player2Event)="dataFromPlayer2($event)"
+	[playerInfo]="player2"></app-player2>
+	<button *ngIf="form1Filled && form2Filled" (click)="startBattle()">Battle!</button>
+</div>
+
+<div *ngIf="battleStarted">
+	<app-results
+	[player1Info]="player1"
+	[player2Info]="player2"
+	></app-results>
+</div>

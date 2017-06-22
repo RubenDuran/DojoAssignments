@@ -1,0 +1,11 @@
+<div *ngIf="!playerInfo.username">
+	<h2>Player 2:</h2>
+	<form (submit)="player2Submit()">
+		<input type="text" name="username" [(ngModel)]="player.username" #username="ngModel" >
+		<input type="submit" name="">
+	</form>
+</div>
+<div *ngIf="playerInfo.username">
+	<img src="{{playerInfo.imagePath}}" style="height:200px; width:auto;">
+	<p>{{playerInfo.username}}</p>
+</div>

@@ -1,0 +1,24 @@
+<div *ngIf="player1Info.score>player2Info.score">
+	<div class="left">
+		<h2>First Place:</h2>
+		<p>{{player1Info.username}} (score: {{player1Info.score}})</p>
+		<h2>Second Place:</h2>
+		<p>{{player2Info.username}} (score: {{player2Info.score}})</p>
+	</div>
+	<div class="right">
+		<img src="{{player1Info.imagePath}}" style="height:200px; width:auto;">
+		<p>{{player1Info.username}}</p>
+	</div>
+</div>
+<div *ngIf="player1Info.score<player2Info.score">
+	<div class="left">
+		<h2>First Place:</h2>
+		<p>{{player2Info.username}} (score: {{player2Info.score}})</p>
+		<h2>Second Place:</h2>
+		<p>{{player1Info.username}} (score: {{player1Info.score}})</p>
+	</div>
+	<div class="right">
+		<img src="{{player2Info.imagePath}}" style="height:200px; width:auto;">
+		<p>{{player2Info.username}}</p>
+	</div>
+</div>

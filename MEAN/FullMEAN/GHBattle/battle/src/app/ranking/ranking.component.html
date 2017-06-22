@@ -1,0 +1,6 @@
+<fieldset *ngFor="let player of players; let i = index">
+	<h3>{{i+1}}</h3>
+	<img src="{{player.imagePath}}" style="height:200px; width:auto">
+	<h2>{{player.username}}</h2>
+	<h3>Score: {{player.score}}</h3>
+</fieldset>
