@@ -1,4 +1,5 @@
 <form (submit)="login()">
-	Enter name: <input type="text" name="name" [(ngModel)]="user.name" #name="ngModel">
+	<p *ngIf='!name.pristine && name.invalid'>Name must be at least 3 characters long</p>
+	Enter name: <input type="text" name="name" [(ngModel)]="user.name" #name="ngModel" minlength="3">
 	<input type="submit" name="">
 </form>
