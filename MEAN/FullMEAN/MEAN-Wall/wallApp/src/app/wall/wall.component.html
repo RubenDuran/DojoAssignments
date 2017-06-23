@@ -1,0 +1,21 @@
+<h2>Welcome, {{currentUser.name}}!</h2>
+<h3>Create a new message:</h3>
+<form (submit)="newMessage()">
+	<input type="text" [(ngModel)]="message.content" name = "content" #content="ngModel">
+	<input type="submit" name="">
+</form>
+
+<h4>All messages:</h4>
+<fieldset *ngFor="let message of messages; let i= index; trackBy: trackByFn">
+	<p>{{message.content}}, by {{message._user.name}}</p>
+
+	<h4>Comments on this message:</h4>
+	<fieldset *ngFor="let comment of message.comments">
+		<p>{{comment.content}}, by {{comment._user.name}}</p>
+	</fieldset>
+	<h5>Add a new comment:</h5>
+	<form (submit)="newComment(message._id, i)">
+		<input type="text" [(ngModel)]="comment[i]" name = "content-{{i}}">
+		<input type="submit" name="">
+	</form>
+</fieldset>
