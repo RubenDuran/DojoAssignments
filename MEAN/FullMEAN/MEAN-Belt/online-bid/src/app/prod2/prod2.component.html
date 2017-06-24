@@ -1,0 +1,21 @@
+<div class="prod-box">
+  <img src="https://stockx.imgix.net/Air-Jordan-4-Retro-Pure-Money-2017-GS.png?fit=fill&bg=FFFFFF&w=1400&h=1000&auto=format&trim=color">
+  <p>Jordan-4</p>
+
+  <form (submit)="addBid()">
+    <p><input type="number" name="bid" [(ngModel)]="bid.amount" #name="ngModel"></p>
+    <input type="submit" value="Enter">
+  </form>
+
+  <p>Current Bids:</p>
+  <div class="bidBox">
+    <div *ngIf='bidStatus'>
+        <fieldset>
+          <p *ngFor="let bid of bids; let i= index; trackBy: trackByFn">{{bid.name.name}}: ${{bid.amount}}</p>
+      </fieldset>
+
+    </div>
+  </div>
+
+
+</div>

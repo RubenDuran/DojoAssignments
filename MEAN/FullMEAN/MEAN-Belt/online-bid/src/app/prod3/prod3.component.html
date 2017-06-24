@@ -1,0 +1,21 @@
+<div class="prod-box">
+  <img src="https://www.flightclub.com/media/catalog/product/cache/1/image/800x570/9df78eab33525d08d6e5fb8d27136e95/6/3/63597195141-air-jordan-13-retro-countdown-pack-white-black-true-red-010630_1.jpg">
+  <p>Jordan-13</p>
+
+  <form (submit)="addBid()">
+    <p><input type="number" name="bid" [(ngModel)]="bid.amount" #name="ngModel"></p>
+    <input type="submit" value="Enter">
+  </form>
+
+  <p>Current Bids:</p>
+  <div class="bidBox">
+    <div *ngIf='bidStatus'>
+      <fieldset>
+        <p *ngFor="let bid of bids; let i= index; trackBy: trackByFn">{{bid.name.name}}: ${{bid.amount}}</p>
+    </fieldset>
+
+    </div>
+  </div>
+
+
+</div>
