@@ -6,7 +6,7 @@ import { ResultsComponent } from './results/results.component';
 
 const routes: Routes = [
   {
-      path: 'login',
+      path: '',
       children: [],
       component: LoginComponent
   },

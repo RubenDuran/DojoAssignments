@@ -18,7 +18,8 @@ module.exports = function(app){
 	app.use(authenticate);
 	app.post('/api/delete_bids', Bids.delete);
 	app.post('/api/bids', Bids.create);
-	app.get('/api/bids', Bids.index);
+	app.post('/api/bids/all', Bids.getBids);
+	app.post('/api/bids/one', Bids.getBid);
     app.get('/api/bids/name', Bidders.getName);
-
+	app.get('/api/logout', Bidders.logout);
 }

@@ -1,12 +1,32 @@
 <div class="container">
   <div class="header">
-    <h1>Bid Now!</h1>
-    <a href="/">Logout</a>
+    <header>
+        <h1>Bid Now!</h1>
+        <button (click)="logout()" style="float:right;">Logout</button>
+    </header>
+
   </div>
-  <div class="row">
-    <div class="col-md-4"><app-prod1></app-prod1></div>
-    <div class="col-md-4"><app-prod2></app-prod2></div>
-    <div class="col-md-4"><app-prod3></app-prod3></div>
+  <div class="mar-top">
+      <div class="row">
+        <div class="col-md-4">
+            <app-prod1
+            (sendBidEvent)="receiveBidP1($event)"
+            [bidsArray]="product1bids"></app-prod1>
+        </div>
+
+        <div class="col-md-4">
+            <app-prod2
+            (sendBidEvent)="receiveBidP2($event)"
+            [bidsArray]="product2bids"></app-prod2>
+        </div>
+
+        <div class="col-md-4">
+            <app-prod3
+            (sendBidEvent)="receiveBidP3($event)"
+            [bidsArray]="product3bids"></app-prod3>
+        </div>
+      </div>
   </div>
+  <button type="button" (click)="endBid()">End Bid</button>
 
 </div>

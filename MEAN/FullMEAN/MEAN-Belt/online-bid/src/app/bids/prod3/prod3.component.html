@@ -6,12 +6,13 @@
     <p><input type="number" name="bid" [(ngModel)]="bid.amount" #name="ngModel"></p>
     <input type="submit" value="Enter">
   </form>
+    <p *ngFor="let error of errors">{{error}}</p>
 
   <p>Current Bids:</p>
   <div class="bidBox">
     <div *ngIf='bidStatus'>
       <fieldset>
-        <p *ngFor="let bid of bids; let i= index; trackBy: trackByFn">{{bid.name.name}}: ${{bid.amount}}</p>
+        <p *ngFor="let bid of bids; let i= index; trackBy: trackByFn">{{bid.name}}: ${{bid.amount}}</p>
     </fieldset>
 
     </div>
