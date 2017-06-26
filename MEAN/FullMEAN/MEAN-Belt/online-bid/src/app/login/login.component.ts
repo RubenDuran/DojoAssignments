@@ -15,18 +15,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   login() {
-    console.log("in component login function");
     this._bidsService.login(this.bidder)
       .then((data) => {
         var arr = [];
-        console.log(data);
         if (data.errors) {
           for (var key in data.errors) {
             arr.push(data.errors[key].message);
             this.errors = arr;
           }
         } else {
-          console.log("login success");
           this._router.navigate(['bids']);
         }
       })
@@ -35,8 +32,3 @@ export class LoginComponent implements OnInit {
       })
   }
 }
-
-
-  //  		this._router.navigate(['bids']);
-  //  	})
-  //  	.catch((data)=>console.log(data))

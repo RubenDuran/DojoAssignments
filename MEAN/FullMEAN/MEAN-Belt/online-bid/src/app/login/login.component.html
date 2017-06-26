@@ -1,9 +1,11 @@
 <div class="container">
-    <ul *ngIf ='errors'>
+  <div class="jumbotron">
+      <ul *ngIf='errors'>
         <li *ngFor="let error of errors">{{error}}</li>
-    </ul>
-    <form (submit)="login()">
-	<p>Your name: <input type="text" name="name" [(ngModel)]="bidder.name" #name="ngModel"></p>
-	<input type="submit" value="Enter">
-</form>
+      </ul>
+      <form (submit)="login()">
+        <p>Your name: <input type="text" name="name" [(ngModel)]="bidder.name" #name="ngModel"></p>
+        <input type="submit" value="Enter" class="btn btn-primary pull-right">
+      </form>
+  </div>
 </div>

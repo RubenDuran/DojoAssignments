@@ -1,32 +1,26 @@
 <div class="container">
   <div class="header">
     <header>
-        <h1>Bid Now!</h1>
-        <button (click)="logout()" style="float:right;">Logout</button>
+      <button (click)="logout()" class="btn btn-danger pull-right">Logout</button>
+      <h1>Bid Now!</h1>
     </header>
 
   </div>
   <div class="mar-top">
-      <div class="row">
-        <div class="col-md-4">
-            <app-prod1
-            (sendBidEvent)="receiveBidP1($event)"
-            [bidsArray]="product1bids"></app-prod1>
-        </div>
-
-        <div class="col-md-4">
-            <app-prod2
-            (sendBidEvent)="receiveBidP2($event)"
-            [bidsArray]="product2bids"></app-prod2>
-        </div>
-
-        <div class="col-md-4">
-            <app-prod3
-            (sendBidEvent)="receiveBidP3($event)"
-            [bidsArray]="product3bids"></app-prod3>
-        </div>
+    <div class="row">
+      <div class="col-md-4">
+        <app-prod1 (sendBidStatus)="receiveStatusP1($event)"></app-prod1>
       </div>
+
+      <div class="col-md-4">
+        <app-prod2 (sendBidStatus)="receiveStatusP2($event)"></app-prod2>
+      </div>
+
+      <div class="col-md-4">
+        <app-prod3 (sendBidStatus)="receiveStatusP3($event)"></app-prod3>
+      </div>
+    </div>
   </div>
-  <button type="button" (click)="endBid()">End Bid</button>
+  <button type="button" (click)="endBid()" class="btn btn-danger pull-right">End Bid</button>
 
 </div>

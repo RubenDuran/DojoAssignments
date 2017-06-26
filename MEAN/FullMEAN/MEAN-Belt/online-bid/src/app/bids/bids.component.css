@@ -1,3 +1,10 @@
 .prod-box{
     max-width: 30%;
 }
+header{
+    display: block;
+}
+
+.mar-top{
+    margin: 10px;
+}

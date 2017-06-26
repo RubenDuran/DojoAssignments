@@ -1,3 +1,36 @@
-<p>
-  results works!
-</p>
+<div class="container">
+  <header>
+    <h1>{{user}} ended the Bid</h1>
+    <a href="#">logout</a>
+  </header>
+  <h3>Highest Bidder per Product:</h3>
+
+  <div class="row">
+    <div class="col-md-6">
+      <img src="https://stockx.imgix.net/Air-Jordan-11-Retro-Legend-Blue.jpg?fit=fill&bg=FFFFFF&w=1400&h=1000&auto=format&trim=color" alt="Jordan-11">
+      <p>Jordan-11</p>
+      <h5>{{ topBids.prod1._bidder.name }}</h5>
+      <p>${{ topBids.prod1.amount }}</p>
+    </div>
+    <div class="col-md-6">
+      <img src="https://stockx.imgix.net/Air-Jordan-4-Retro-Pure-Money-2017-GS.png?fit=fill&bg=FFFFFF&w=1400&h=1000&auto=format&trim=color" alt="Jordan-4">
+
+      <p>Jordan-4</p>
+      <h5>{{ topBids.prod2._bidder.name }}</h5>
+      <p>${{ topBids.prod2.amount }}</p>
+    </div>
+    <div class="col-md-6">
+      <img src="https://www.flightclub.com/media/catalog/product/cache/1/image/800x570/9df78eab33525d08d6e5fb8d27136e95/6/3/63597195141-air-jordan-13-retro-countdown-pack-white-black-true-red-010630_1.jpg" alt="Jordan-13">
+
+      <p>Jordan-13</p>
+      <h5>{{ topBids.prod3._bidder.name }}</h5>
+      <p>${{ topBids.prod3.amount }}</p>
+    </div>
+
+
+  </div>
+
+  <div class="btn-group">
+    <button (click)="restart()" type="button" class="btn btn-primary pull-right">Start Bid</button>
+  </div>
+</div>

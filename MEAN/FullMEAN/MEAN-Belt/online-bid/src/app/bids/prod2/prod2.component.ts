@@ -8,11 +8,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./prod2.component.css']
 })
 export class Prod2Component implements OnInit {
-  @Input() bidsArray;
-  @Output() sendBidEvent = new EventEmitter();
+  // @Input() bidsArray;
+  @Output() sendBidStatus = new EventEmitter();
 
   bid: object = {
-    product: "Jordan-7",
+    product: "Jordan-4",
     amount: 0,
   };
   bidStatus: boolean = false;
@@ -24,38 +24,40 @@ export class Prod2Component implements OnInit {
   ngOnInit() {
     this._bidsService.getBids(this.bid)
       .then((data) => {
-        if (data.length !== undefined) {
+        if (data.length !== 0) {
           this.bidStatus = true;
+          this.sendBidStatus.emit(this.bidStatus);
+          for (let bidder of data) {
+            console.log('in for loop', bidder)
+            this.bids.push({
+              name: bidder['_bidder']['name'],
+              amount: bidder['amount']
+            })
+          }
+        } else {
+          this.bidStatus = false;
+          this.sendBidStatus.emit(this.bidStatus);
         }
-        for (let bidder of data) {
-          console.log('in for loop', bidder)
-          this.bids.push({
-            name: bidder['_bidder']['name'],
-            amount: bidder['amount']
-          })
-        }
-        console.log(this.bids);
       })
       .catch((data) => {
         console.log(this.bids)
       })
   }
   addBid() {
-    console.log("in prod2 addBid function");
-    console.log(this.bids);
+
     if (this.bids.length > 0) {
       if (this.bid['amount'] > this.bids[this.bids.length - 1]['amount']) {
         this._bidsService.createBid(this.bid)
           .then((data) => {
+            this.bidStatus = true;
+            this.sendBidStatus.emit(this.bidStatus);
             var arr = [];
             if (data.errors) {
               for (var key in data.errors) {
                 arr.push(data.errors[key].message);
                 this.errors = arr;
               }
-              console.log('errors in component', this.errors);
             } else {
-              console.log("login success");
               this._bidsService.getBid(this.bid)
                 .then((data) => {
                   this.bidStatus = true;
@@ -82,18 +84,18 @@ export class Prod2Component implements OnInit {
     else {
       this._bidsService.createBid(this.bid)
         .then((data) => {
+          this.bidStatus = true;
+          this.sendBidStatus.emit(this.bidStatus);
           var arr = [];
           if (data.errors) {
             for (var key in data.errors) {
               arr.push(data.errors[key].message);
               this.errors = arr;
             }
-            console.log('errors in component', this.errors);
           } else {
-            console.log("login success");
             this._bidsService.getBid(this.bid)
               .then((data) => {
-                this.bidStatus = true;
+
                 this.errors = [];
                 this.bids.push({
                   name: data[0]['_bidder']['name'],

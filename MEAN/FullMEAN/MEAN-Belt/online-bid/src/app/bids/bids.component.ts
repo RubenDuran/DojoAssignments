@@ -13,10 +13,6 @@ export class BidsComponent implements OnInit {
   product2hasbid: boolean = false;
   product3hasbid: boolean = false;
 
-  product1bids: any = [];
-  product2bids: any = [];
-  product3bids: any = [];
-
 
   constructor(private _bidsService: BidsService, private _router: Router) { }
 
@@ -25,17 +21,43 @@ export class BidsComponent implements OnInit {
   logout() {
     this._bidsService.logout()
       .then(data => {
-        console.log("Logging out to home page");
         this._router.navigate(['']);
       })
-      .catch(err => { console.log(err) });
+      .catch(err => {
+        this._router.navigate(['']);
+      });
+  }
+
+
+  receiveStatusP1(event) {
+    console.log('in received status event', event)
+    if (event === true) {
+      this.product1hasbid = true;
+    } else {
+      this.product1hasbid = false;
+    }
+
+
+  }
+  receiveStatusP2(event) {
+    console.log('in received status event #2', event)
+    if (event === true) {
+      this.product2hasbid = true;
+    } else {
+      this.product2hasbid = false;
+    }
+  }
+  receiveStatusP3(event) {
+    if (event === true) {
+      this.product3hasbid = true;
+    } else {
+      this.product3hasbid = false;
+    }
   }
   endBid() {
-    console.log('end bid temp')
     if (!this.product1hasbid || !this.product2hasbid || !this.product3hasbid) {
       alert("Cannot end the bid. One or more products do not have any bids yet.");
     } else {
-      console.log("We can route to result page now.");
       this._router.navigate(['results'])
     }
   }
