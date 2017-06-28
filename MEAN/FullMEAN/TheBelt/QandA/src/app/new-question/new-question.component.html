@@ -1,0 +1,16 @@
+<div class="container">
+    <header>
+        <a href="#">Home</a>
+
+    </header>
+    <div>
+
+        <form (submit)="addQuestion()">
+            <p>
+                Question <input type="text" name="content" [(ngModel)]="question.content" #content="ngModel" >
+            </p>
+            <p>Description (optional) <input type="text" name="description" [(ngModel)]="question.description" #description="ngModel"></p>
+            <input type="submit">
+        </form>
+    </div>
+</div>

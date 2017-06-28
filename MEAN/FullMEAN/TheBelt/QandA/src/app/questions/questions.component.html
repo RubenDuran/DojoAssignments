@@ -1,0 +1,26 @@
+<div class="container">
+    <header>
+        <h1>Hi $NAME</h1>
+        <a [routerLink]="['./../newquestion']">Add a Question</a>
+         <button (click)="logout()" class="btn btn-danger pull-right">Logout</button>
+        <h3>Search <input type="text" name="search"></h3>
+    </header>
+
+    <div class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let question of questions">
+                    <td>{{question.content}}</td>
+                    <td>$AnswerTotal</td>
+                    <td><a [routerLink]="['./../answers/',question._id]">Show</a> | <a [routerLink]="['./../newanswer']">Answer</a></td>
+                </tr>
+            </tbody>
+    </div>
+</div>
+<router-outlet></router-outlet>

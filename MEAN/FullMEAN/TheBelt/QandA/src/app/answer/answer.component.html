@@ -1,0 +1,11 @@
+
+<div class="container">
+    <h1>{{question}}</h1>
+    <form (submit)="addAnswer()">
+        <p>
+            Answer <input type="text" name="content" [(ngModel)]="answer.content" #content="ngModel" >
+        </p>
+        <p>Description (optional) <input type="text" name="description" [(ngModel)]="answer.details" #details="ngModel"></p>
+        <input type="submit">
+    </form>
+</div>
