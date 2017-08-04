@@ -2,25 +2,44 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
+from django.db.models import Count
 from . models import User, Truck, Category, Color
 import bcrypt, urllib
 from . import twilio_config as twilio
 
 
 def index(request):
-    return render(request, 'truck_tracker/index.html')
+    last_truck  = Truck.objects.latest('created_at')
+    total_trucks = Truck.objects.count()
+    print last_truck.category.category_name
+    print total_trucks
+    context = {
+        'last_truck': last_truck,
+        'total_trucks': total_trucks
+    }
+    return render(request, 'truck_tracker/index.html', context)
 
 def trucks(request):
-    truck_categories = Category.objects.all()
+    last_truck  = Truck.objects.latest('created_at')
+    total_trucks = Truck.objects.count()
+    # truck_categories = Category.objects.all()
+    truck_categories = Category.objects.annotate(number_of_trucks=Count('truck')).order_by('category_name')
+    print truck_categories[0].number_of_trucks
     context = {
-        'truck_categories': truck_categories
+        'truck_categories': truck_categories,
+        'last_truck': last_truck,
+        'total_trucks': total_trucks
     }
     return render(request, 'truck_tracker/trucks.html', context)
 
 def add_truck(request):
+    last_truck  = Truck.objects.latest('created_at')
+    total_trucks = Truck.objects.count()
     truck_categories = Category.objects.all()
     context = {
-        'truck_categories': truck_categories
+        'truck_categories': truck_categories,
+        'last_truck': last_truck,
+        'total_trucks': total_trucks
     }
     return render(request, 'truck_tracker/add.html', context)
 
@@ -105,6 +124,9 @@ def search(request):
 
 def category(request, id):
 
+    last_truck  = Truck.objects.latest('created_at')
+    total_trucks = Truck.objects.count()
+
     category = urllib.unquote(id).decode('utf8')
     print category
     trucks = Color.objects.filter(truck_color__category__category_name = category)
@@ -123,6 +145,8 @@ def category(request, id):
     context = {
         'category': category,
         'trucks': trucks,
+        'last_truck': last_truck,
+        'total_trucks': total_trucks
     }
 
     return render(request,'truck_tracker/category.html', context)
