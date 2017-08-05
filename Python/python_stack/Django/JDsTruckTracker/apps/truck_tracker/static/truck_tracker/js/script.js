@@ -2,11 +2,17 @@
 //     .checkbox();
 $(document).ready(function() {
     console.log("ready!");
-    $("#regBtn").click(function() {
+    $(".regBtn").click(function() {
+        console.log("reg clicked");
         // ui.basic.modal.
         $('#reg')
             .modal('show');
     });
+    $("#cancel").click(function() {
+        $('#reg')
+            .modal('hide')
+    });
+
     $(".loginBtn").click(function() {
         $('#login')
             .modal('show');
@@ -15,14 +21,9 @@ $(document).ready(function() {
         $('#login')
             .modal('hide')
     });
-    $("#cancel").click(function() {
-        $('#reg')
-            .modal('hide')
-    });
+
     $(".cancelBtn").click(function() {
         $('#login')
             .modal('show')
     });
-
-
 });

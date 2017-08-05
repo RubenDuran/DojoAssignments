@@ -116,7 +116,7 @@ def login(request):
             user_details = User.objects.filter(username=username)
             user = user_details[0]
             request.session['user_id'] = user.id
-            return redirect('/trucks')
+            return redirect('/add_truck')
         return redirect('/')
 
 def search(request):

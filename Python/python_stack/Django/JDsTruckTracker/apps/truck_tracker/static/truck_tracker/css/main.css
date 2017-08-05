@@ -40,3 +40,8 @@ div.five.wide.column>p>span {
 div.five.wide.column>p>span>a {
     color: #67cd81 !important;
 }
+
+body > div.ui.center.aligned.container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

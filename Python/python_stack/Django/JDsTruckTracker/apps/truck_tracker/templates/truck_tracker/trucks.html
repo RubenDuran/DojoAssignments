@@ -36,8 +36,12 @@
                     <a class="item" href="/add_truck">Add a Truck</a>
                     <!-- <a class="item">Careers</a> -->
                     <div class="right item">
+                        {% if request.session.user_id %}
+                        <a class="ui inverted button loginBtn" href="/logout">logout</a>
+                        {% else %}
                         <a class="ui inverted button loginBtn">Login</a>
-                        <a class="ui inverted button" id="regBtn">Register</a>
+                        <a class="ui inverted button regBtn">Register</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -45,10 +49,16 @@
             <div class="ui text container">
                 <h1>JD's Monster Jam Truck Tracker</h1>
                 <h3>Select a category to view the specific trucks in the collection.</h3>
+                <form method="POST" action="/add_truck">
+                    {% csrf_token %}
                 <button class="ui huge button addBtn">Add a Truck <i class="right arrow icon"></i></button>
+                </form>
             </div>
         </div>
     </div>
+    <!-- begining of modal -->
+    {% include "truck_tracker/modal.html" %}
+    <!-- end of modal -->
     <!-- begining of grid -->
 
         <div class="ui center aligned container">
