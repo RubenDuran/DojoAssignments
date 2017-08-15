@@ -1,0 +1,7 @@
+<h1>Add a Quote</h1>
+<form (submit)="onSubmit($request)">
+    <input type="text" name="quote"  [(ngModel)]="quote" #quotes="ngModel">
+    <p>Author <input type="text" name="author"  [(ngModel)]="author" #auth="ngModel"></p>
+    <input type="submit" value="Add Quote">
+
+</form>
