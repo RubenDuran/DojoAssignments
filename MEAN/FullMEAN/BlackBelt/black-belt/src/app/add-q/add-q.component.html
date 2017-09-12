@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>New Question</h2>
+
+    <form (submit)="addQuestion()">
+            <p>
+                Question <input type="text" name="content" [(ngModel)]="question.content" #content="ngModel" required="true" >
+            </p>
+            <p>Correct Answer: <input type="text" name="answer" [(ngModel)]="question.answer" #answer="ngModel" required="true"></p>
+
+            <p>Fake Answer 1: <input type="text" name="fake1" [(ngModel)]="question.fake1" #fake1="ngModel" required="true"></p>
+
+            <p>Fake Answer 2: <input type="text" name="fake2" [(ngModel)]="question.fake2" #fake2="ngModel" required="true"></p>
+            <span class="pull-right">
+                <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+                <input class="btn btn-primary" type="submit" value="Add Question">
+            </span>
+
+            
+        </form>
+
+</div>

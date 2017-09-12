@@ -1,0 +1,32 @@
+<div class="container">
+    <p>Hi {{user}}!</p>
+    <p>Choose an answer for each of the questions and submit the test once done.</p>
+    <p>Good luck!</p>
+
+    <form (submit)="submitGame()">
+        <fieldset *ngFor="let q of threeQuestions; let i= index; trackBy: trackByFn">
+            <p> {{i + 1}} {{q.question}}</p>
+
+            <input type="radio" name="{{i+1}}" [(ngModel)]="answers[i]" value="{{q.answers[0].content}}">{{q.answers[0].content}}
+
+            <br>
+
+            <input type="radio" name="{{i+1}}" [(ngModel)]="answers[i]" value="{{q.answers[1].content}}">{{q.answers[1].content}}
+
+            <br>
+
+            <input type="radio" name="{{i+1}}" [(ngModel)]="answers[i]" value="{{q.answers[2].content}}">{{q.answers[2].content}}
+
+            <br>
+
+
+        </fieldset>
+
+        <span class="pull-right">
+            <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </span>
+
+    </form>
+
+</div>
