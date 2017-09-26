@@ -1,0 +1,32 @@
+<div class="container">
+    <header>
+         <a class="pull-right" (click)="logout()">Logout</a>
+
+         <h1>Doctor's Appointment</h1>
+         <h4 class="pull-right">Search <input type="text" value=""></h4>
+
+         <p>Hello {{user.name}}</p>
+    </header>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Patient Name</th>
+                    <th>Complain</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>date</td>
+                    <td>TIME</td>
+                    <td>NAME</td>
+                    <td>COMPLAIN</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary pull-right" type="button" [routerLink]="['/../new_appointment']">Add New Appointment</button>
+
+    </div>
+</div>

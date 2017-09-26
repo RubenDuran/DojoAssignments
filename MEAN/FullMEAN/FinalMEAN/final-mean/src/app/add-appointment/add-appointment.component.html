@@ -1,0 +1,15 @@
+<div class="container">
+
+    <h1>New Appointment</h1>
+
+    <form (submit)="add()">
+        <p>
+        Date: <input type="date" name="date">
+        Time: <input type="time" name="time">
+        </p>
+        <p>complain: <textarea class="form-control" rows="3"></textarea></p>
+
+        <button class="btn btn-default" (click)="cancel()">Cancel</button>
+        <input class="btn btn-default" type="submit" value="Add Appointment">
+    </form>
+</div>
